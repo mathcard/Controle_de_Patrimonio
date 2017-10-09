@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Controle de Patrimônio</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <script src="js/jquery-validate.js"></script>
+    <script src="js/js.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <img alt="Brand" src="logo.png" width="80" height="50">
+        <a class="navbar-brand" href="#">   Controle de Patrimônio</a>
+    </nav>
+    <hr class="divider">
+
+    <!-- Where all the magic happens -->
+    <!-- LOGIN FORM -->
+    <div style="margin-left:30%;padding:70px 0">
+        <div class="logo">Inclusão de Bem Patrimônial</div>
+        <!-- Main Form -->
+        <div class="login-form-1">
+            <form id="login-form" class="text-left">
+                <div style="width:500px" class="main-login-form">
+                    <div class="login-group">
+                        <div class="form-group">
+                            <label for="lg_password" class="sr-only">Descrição</label>
+                            <textarea style="height: 100px" type="text" class="form-control" id="lg_password" name="lg_password" placeholder="Descrição"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_username">Data de Aquisição</label>
+                            <input type="date" class="form-control" id="lg_username" name="lg_username">
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_username" class="sr-only">Prazo de Garantia</label>
+                            <input type="number" class="form-control" id="lg_username" name="lg_username" placeholder="Prazo de garantia">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg_password" class="sr-only">Nota Fiscal</label>
+                            <input type="number" class="form-control" id="reg_password" name="reg_password" placeholder="Nota Fiscal">
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_password" class="sr-only">Fornecedor</label>
+                            <input type="text" class="form-control" id="lg_password" name="lg_password" placeholder="Fornecedor">
+                        </div>
+                        <div class="form-group">
+                            <label for="lg_username">Valor</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">R$</span><input type="number" value="0.00" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" id="valor">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="sel1" class="sr-only">Situação</label>
+                            <select class="form-control" id="sel1" title='Situação'>  
+                                    <option>Situação</option> 
+                                    <option>Baixado</option>
+                                    <option>Incorporado</option>
+                                    </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="sel2" class="sr-only">Departamento</label>
+                            <select class="form-control">
+                                  <option>Departamento</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                </div>
+                <div class="etc-login-form">
+                    <a href="#">Voltar</a>
+                </div>
+            </form>
+        </div>
+        <!-- end:Main Form -->
+    </div>
+
+    <!-- end:Main Form -->
+
+</body>
+
+</html>
