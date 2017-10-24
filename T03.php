@@ -1,7 +1,15 @@
 <?php require "modelo.php"; ?>
-
-
-
+<script type="text/javascript">
+function comp(){
+senha1 = document.getElementById('us_passwd').value;
+senha2 = document.getElementById('us_passwd2').value;
+        if(senha1 != senha2){
+                alert('As senhas não são iguais');
+        return false;
+        }
+        return true;
+}
+</script>
     <div style="margin-left:33%;padding:70px 0">
         <div class="logo">Inclusão de Usuário</div>
         <!-- Main Form -->
