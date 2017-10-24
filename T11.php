@@ -1,5 +1,17 @@
 <?php require "modelo.php"; ?>
 <?php require "connect.php"; ?>
+<?php
+
+function baixa($id) {
+    echo "batata";
+    $sql= "DELETE FROM usuario WHERE numro LIKE :id";
+    $resultado = $con->prepare($sql);
+    $resultado->bindParam(':id', $id, PDO::PARAM_STR);
+    $resultado->execute();
+    header("Refresh:2");
+
+}
+?>
     <div style="margin-left:33%;padding:70px 0">
         <div class="logo">Buscar Usuário</div>
         <!-- Main Form -->
@@ -21,28 +33,27 @@
         </div>
     </div>
     <!-- end:Main Form -->
+    </div>
     <div id="main" class="container-fluid">
-	</div>
+    </div>
     <div class='table-responsive col-md-12'>
         <table class='table table-striped'>
             <thead>
                 <tr>
-                    <th>Codigo</th>
                     <th>Descrição</th>
                     <th>Data de compra</th>
                     <th>Garantia</th>
                     <th>Nota</th>
                     <th>Fornecedor</th>
                     <th>Valor</th>
-                    <th>Situação</th>
                     <th>Categoria</th>
                     <th>Sala</th>
                     <th class='actions text-center'>Ação</th>
                 </tr>
             </thead>
     </div>
-	<tbody>
-	
+    <tbody>
+    
             <?php
 if(isset($_GET['nome'])){
     $nome = "%".$_GET['nome']."%";
@@ -53,21 +64,17 @@ if(isset($_GET['nome'])){
     $total = $resultado->rowCount();
     while ($row = $resultado->fetchObject()) {
                 $id=$row->numero;
-                echo "<tr>";          
-		echo "<td><b>{$row->numero}</b></td>";
-		echo "<td><b>{$row->descricao}</b></td>";
+                echo "<tr>";
+                echo "<td><b>{$row->descricao}</b></td>";
                 echo "<td><b>{$row->datacompra}</b></td>";
                 echo "<td><b>{$row->prazogarantia}</b></td>";
                 echo "<td><b>{$row->nrnotafiscal}</b></td>";
                 echo "<td><b>{$row->fornecedor}</b></td>";
                 echo "<td><b>{$row->valor}</b></td>";
-                echo "<td><b>{$row->situacao}</b></td>";
                 echo "<td><b>{$row->codcategoria}</b></td>";
                 echo "<td><b>{$row->numsala}</b></td>";
-                echo "<td>
-		 <a href='baixa.php?id=$id'>
-                <input type='button' name='insert' value='Apagar' />
-                </a></td>";
+                echo "<td><input type='button' name='insert' value='Apagar' onclick='baixa()' /><input type='button' name='insert' value='Editar' /></td>";
+                #echo "<td class='actions text-center'><a href='#'>Editar</a> <a href='#' onclick='apagar()'>Apagar</a>";
                 echo "</tr>";
                     }
 }else{
@@ -76,33 +83,33 @@ if(isset($_GET['nome'])){
             $resultado->execute();
             $total = $resultado->rowCount();
             while ($row = $resultado->fetchObject()) {
+
                 echo "<tr>";
-                echo "<td><b>{$row->numero}</b></td>";
                 echo "<td><b>{$row->descricao}</b></td>";
                 echo "<td><b>{$row->datacompra}</b></td>";
                 echo "<td><b>{$row->prazogarantia}</b></td>";
                 echo "<td><b>{$row->nrnotafiscal}</b></td>";
                 echo "<td><b>{$row->fornecedor}</b></td>";
                 echo "<td><b>{$row->valor}</b></td>";
-                echo "<td><b>{$row->situacao}</b></td>";
                 echo "<td><b>{$row->codcategoria}</b></td>";
                 echo "<td><b>{$row->numsala}</b></td>";
-		$id2=$row->numero;
-                echo "<td>
-		<a href='baixa.php?id=$id2'>
-		<input type='button' name='insert' value='Apagar' />
-		</a></td>";
+                echo "<td><input type='button' name='insert' value='Apagar' onclick='baixa()' /><input type='button' name='insert' value='Editar' /></td>";
                 echo "</tr>";
             }
         }
             ?>
+
     </tbody>
     </table>
     </div>
     <div class="etc-login-form">
-        <a href="index.php">Voltar</a>        
+        <a href="index.php">Voltar</a>
+            
         <a href="T11.php">Listar novamente</a>
     </div>
+
+
     <!-- end:Main Form -->
+
 </body>
 </html>
