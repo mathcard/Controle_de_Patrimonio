@@ -8,4 +8,5 @@ $resultado = $con->prepare($sql);
 $resultado->bindParam(1, $sig);
 $resultado->bindParam(2, $nome);
 $resultado->execute();
+header ("location: index.php");
 ?>

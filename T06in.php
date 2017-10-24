@@ -12,4 +12,5 @@ $resultado->bindParam(7, $_POST['in_sit']);
 $resultado->bindParam(8, $_POST['selcat']);
 $resultado->bindParam(9, $_POST['selsala']);
 $resultado->execute();
+header ("location: index.php");
 ?>

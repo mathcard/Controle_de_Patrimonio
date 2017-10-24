@@ -9,4 +9,5 @@ $resultado->bindParam(4, $_POST['sl_desc']);
 $resultado->bindParam(5, $_POST['selpredio']);
 $resultado->bindParam(6, $_POST['seldep']);
 $resultado->execute();
+header ("location: index.php");
 ?>

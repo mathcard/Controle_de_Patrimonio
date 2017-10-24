@@ -13,5 +13,6 @@ $resultado->bindParam(2, $_POST['selbem']);
 $resultado->bindParam(3, $_POST['selsalao']);
 $resultado->bindParam(4, $_POST['selsalad']);
 $resultado->execute();
+header ("location: index.php");
 
 ?>

@@ -15,4 +15,5 @@ $resultado->bindParam(4, $d);
 $resultado->bindParam(5, $e);
 $resultado->bindParam(6, $f);
 $resultado->execute();
+header ("location: index.php");
 ?>
