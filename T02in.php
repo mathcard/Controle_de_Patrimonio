@@ -11,4 +11,5 @@ $resultado->bindParam(6, $_POST['pr_bairro']);
 $resultado->bindParam(7, $_POST['pr_city']);
 $resultado->bindParam(8, $_POST['estado']);
 $resultado->execute();
+header ("location: index.php");
 ?>
