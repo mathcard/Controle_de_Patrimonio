@@ -1,8 +1,8 @@
 -- Crinado banco de dados
 create database patrimonio;
 
--- Criando usuario
-create user queops with password 'piramide';
+-- Conectando no banco
+\c patrimonio
 
 -- Criando tabelas
 create table BaixaBemPatrimonial (
@@ -138,3 +138,21 @@ references Sala (numero);
 alter table MBP add constraint MBP_Sala_dst_fk
 foreign key (numSalaDestino)
 references Sala (numero);
+
+-- Criando grupo de usuarios com acesso ao banco patrimonio;
+create role controleAcademicoUsers;
+
+-- Permissões do grupo controleAcademicoUsers
+grant ALL on TABLE Usuario, Categoria, Sala, Predio, Departamento to controleAcademicoUsers;
+;
+
+grant insert on TABLE BaixaBemPatrimonial, BemPatrimonial, MBP to controleAcademicoUsers; 
+
+grant update on TABLE BaixaBemPatrimonial, BemPatrimonial, MBP to controleAcademicoUsers;
+
+grant select on TABLE BaixaBemPatrimonial, BemPatrimonial, MBP to controleAcademicoUsers;
+
+grant ALL on SEQUENCE categoria_codigo_seq, predio_codigo_seq, usuario_id_seq, bempatrimonial_numero_seq, mbp_numero_seq to controleAcademicoUsers;
+
+-- Criando usuario
+create user queops with password 'piramide' in group controleAcademicoUsers;
