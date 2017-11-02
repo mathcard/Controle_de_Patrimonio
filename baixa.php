@@ -1,6 +1,8 @@
 <?php
 require "modelo.php";
 require "connect.php";
+require "onlyP.php";
+
 if (!isset($_GET['id'])) {
     echo "Essa bem não existe. Você será redirecionado para a pagina de listagem de bens.";
     header ("refresh:3;url=T11.php");
