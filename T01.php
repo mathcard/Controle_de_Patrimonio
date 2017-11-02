@@ -10,15 +10,15 @@
                     <div class="login-group">
                         <div class="form-group">
                             <label for="ct_nome" class="sr-only">Nome</label>
-                            <input type="text" class="form-control" id="ct_nome" name="ct_nome" placeholder="Nome">
+                            <input type="text" class="form-control" id="ct_nome" name="ct_nome" size="50" placeholder="Nome" required>
                         </div>
                         <div class="form-group">
                             <label for="ct_desc" class="sr-only">Descrição</label>
-                            <textarea type="text" class="form-control" id="ct_desc" name="ct_desc" placeholder="Descrição"></textarea>
+                            <textarea type="text" class="form-control" id="ct_desc" name="ct_desc" placeholder="Descrição" size="400" required ></textarea>
                         </div>
                         <div class="form-group">
                             <label for="ct_vida" class="sr-only">Vida útil</label>
-                            <input type="number" class="form-control" id="ct_vida" name="ct_vida" placeholder="Vida útil">
+                            <input type="number" class="form-control" id="ct_vida" name="ct_vida" placeholder="Vida útil" min="1" max="99" required >
                         </div>
                     </div>
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>

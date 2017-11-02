@@ -10,19 +10,19 @@
                 <div class="login-group">
                     <div class="form-group">
                         <label for="sl_num" class="sr-only">Numero</label>
-                        <input type="number" class="form-control" id="sl_num" name="sl_num" placeholder="Número">
+                        <input type="number" class="form-control" id="sl_num" name="sl_num" placeholder="Número"  min="1" max="999" required>
                     </div>
                     <div class="form-group">
                         <label for="sl_comp" class="sr-only">Comprimento</label>
-                        <input type="number" class="form-control" id="sl_comp" name="sl_comp" placeholder="Comprimento">
+                        <input type="number" class="form-control" id="sl_comp" name="sl_comp" placeholder="Comprimento" required>
                     </div>
                     <div class="form-group">
                         <label for="sl_larg" class="sr-only">Largura</label>
-                        <input type="number" class="form-control" id="sl_larg" name="sl_larg" placeholder="Largura">
+                        <input type="number" class="form-control" id="sl_larg" name="sl_larg" placeholder="Largura" required>
                     </div>
                     <div class="form-group">
                         <label for="sl_desc" class="sr-only">Descrição</label>
-                        <textarea type="text" class="form-control" id="sl_desc" name="sl_desc" placeholder="Descrição"></textarea>
+                        <textarea type="text" class="form-control" id="sl_desc" name="sl_desc" placeholder="Descrição" size="80" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="sel1" class="sr-only">Prédio</label>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="sel1" class="sr-only">Departamento</label>
-                        <select class="form-control" id="seldep" name="seldep">
+                        <select class="form-control" id="seldep" name="seldep" required >
                         <option value="" selected disabled hidden>Departamento</option>
 
                                 </select>

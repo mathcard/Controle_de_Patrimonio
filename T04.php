@@ -10,11 +10,11 @@
                     <div class="login-group">
                         <div class="form-group">
                             <label for="dp_sigla" class="sr-only">Sigla</label>
-                            <input type="text" class="form-control" id="dp_sigla" name="dp_sigla" placeholder="Sigla">
+                            <input type="text" class="form-control" id="dp_sigla" name="dp_sigla" placeholder="Sigla" size="5" required >
                         </div>
                         <div class="form-group">
                             <label for="dp_nome" class="sr-only">Nome</label>
-                            <input type="text" class="form-control" id="dp_nome" name="dp_nome" placeholder="Nome">
+                            <input type="text" class="form-control" id="dp_nome" name="dp_nome" placeholder="Nome" size="30" required >
                         </div>
                     </div>
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>

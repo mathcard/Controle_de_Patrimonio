@@ -10,45 +10,45 @@
                     <div class="login-group">
                         <div class="form-group">
                             <label for="pr_nome" class="sr-only">Nome</label>
-                            <input type="text" class="form-control" id="pr_nome" name="pr_nome" placeholder="Nome">
+                            <input type="text" class="form-control" id="pr_nome" name="pr_nome" placeholder="Nome" size="50" required >
                         </div>
 
 
                         <div class="form-group">
                
                                         <label for="pr_cep" class="sr-only">CEP</label>
-                                        <input type="number" class="form-control" id="pr_cep" name="pr_cep" placeholder="CEP">
+                                        <input type="number" class="form-control" id="pr_cep" name="pr_cep" placeholder="CEP" required >
 
                         </div>
                         <div class="form-group">
                             <label for="pr_rua" class="sr-only">Logradouro</label>
-                            <input type="text" class="form-control" id="pr_rua" name="pr_rua" placeholder="Logradouro">
+                            <input type="text" class="form-control" id="pr_rua" name="pr_rua" placeholder="Logradouro" size="60" required >
                         </div>
                         <div class="form-group">
                             <label for="pr_comp" class="sr-only">Complemento</label>
-                            <input type="text" class="form-control" id="pr_comp" name="pr_comp" placeholder="Complemento">
+                            <input type="text" class="form-control" id="pr_comp" name="pr_comp" placeholder="Complemento" size="60" required >
                         </div>
                         <div class="form-group">
                             <label for="pr_num" class="sr-only">Número</label>
-                            <input type="number" class="form-control" id="pr_num" name="pr_num" placeholder="Número">
+                            <input type="text" class="form-control" id="pr_num" name="pr_num" placeholder="Número" size="10" required >
                         </div>
                         <div class="form-group">
                             <label for="pr_bairro" class="sr-only">Bairro</label>
-                            <input type="text" class="form-control" id="pr_bairro" name="pr_bairro" placeholder="Bairro">
+                            <input type="text" class="form-control" id="pr_bairro" name="pr_bairro" placeholder="Bairro" size="40" required >
                         </div>
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-xs-3">
                                     <div class="form-group">
                                         <label for="pr_city" class="sr-only">Cidade</label>
-                                        <input type="text" class="form-control" id="pr_city" name="pr_city" placeholder="   Cidade">
+                                        <input type="text" class="form-control" id="pr_city" name="pr_city" placeholder="   Cidade" size="50" required >
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-3">
                                         <div class="form-group">
                                             <label for="estado" class="sr-only">Estado</label>
-                                            <select class="form-control" name="estado" placeholder="estado">
+                                            <select class="form-control" name="estado" placeholder="estado" required >
                                             <option value="" selected disabled hidden>Estado</option>
                                             <option value="AC">Acre</option>
                                             <option value="AL">Alagoas</option>
