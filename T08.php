@@ -1,5 +1,10 @@
-<?php require "modelo.php"; ?>
-<?php require "connect.php"; ?>
+<?php 
+require "modelo.php";
+require "connect.php";
+	if($tipo == 'F'){
+		header ("location:index.php");
+	}
+?>
    <div style="margin-left:33%;padding:70px 0">
         <div class="logo">Movimentações de Bens Patrimoniais Pendentes</div>
         <!-- Main Form -->
@@ -23,8 +28,24 @@
 	<tbody>
 	
             <?php
-	    $sql= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join usuario u on m.idsolicitante = u.id where m.idautorizador is null");
-            $sql->execute();
+	$LOGIN = $_SESSION['login'];
+
+	$sql2 = $con->query("select sigla from usuario where login = '$LOGIN'");
+	$row = $sql2->fetch(PDO::FETCH_OBJ);
+	$sig = $row->sigla;
+
+
+
+	    $pat= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join usuario u on m.idsolicitante = u.id where m.idautorizador is null");
+            
+	    $dep= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join sala s on s.numero = m.numsalaorigem inner join departamento d on d.sigla = s.sigladpto inner join usuario u on u.sigla = d.sigla  where m.idautorizador is null and u.sigla = '$sig';");
+
+	if($tipo == 'P'){
+	$sql = $pat;
+	}else{
+	$sql = $dep;
+	}	
+	    $sql->execute();
             $total = $sql->rowCount();
             while ($row = $sql->fetchObject()) {
                 echo "<tr>";
