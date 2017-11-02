@@ -1,5 +1,7 @@
 <?php
 require "connect.php";
+require "onlyP.php"; 
+
 $sql = "insert into bempatrimonial values (DEFAULT,?,?,?,?,?,?,?,?,?)"; 
 $resultado = $con->prepare($sql);
 $resultado->bindParam(1, $_POST['in_desc']);

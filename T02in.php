@@ -1,5 +1,7 @@
 <?php
 require "connect.php";
+require "onlyP.php";
+
 $sql = "insert into Predio values (DEFAULT,?,?,?,?,?,?,?,?)";
 $resultado = $con->prepare($sql);
 $resultado->bindParam(1, $_POST['pr_nome']);

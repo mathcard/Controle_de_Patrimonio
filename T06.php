@@ -1,4 +1,6 @@
 <?php require "modelo.php"; ?>
+<?php require "onlyP.php"; ?>
+
     <div style="margin-left:33%;padding:70px 0">
         <div class="logo">Inclusão de Bem Patrimônial</div>
         <!-- Main Form -->

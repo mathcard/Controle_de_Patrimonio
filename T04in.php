@@ -1,5 +1,7 @@
 <?php
 require "connect.php";
+require "onlyP.php";
+
 $sig = $_POST['dp_sigla'];
 $nome = $_POST['dp_nome'];
 

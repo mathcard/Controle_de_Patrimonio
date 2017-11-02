@@ -1,5 +1,7 @@
 <?php
 require "connect.php";
+require "onlyP.php";
+
 $sql = "insert into Sala values (?,?,?,?,?,?)";
 $resultado = $con->prepare($sql);
 $resultado->bindParam(1, $_POST['sl_num']);

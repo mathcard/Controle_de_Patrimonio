@@ -1,4 +1,6 @@
 <?php require "modelo.php"; ?>
+<?php require "onlyP.php"; ?>
+
 <div style="margin-left:33%;padding:70px 0">
     <div class="logo">Inclusão de Salas</div>
     <!-- Main Form -->
@@ -24,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="sel1" class="sr-only">Prédio</label>
-                        <select class="form-control" id="selpredio" name="selpredio" title='Prédio'>
+                        <select class="form-control" id="selpredio" name="selpredio" title='Prédio' onchange="buscarDepartamentos()">
                                       <option>Prédio</option>
                                     </select>
                     </div>
@@ -68,8 +70,9 @@
 		}
         buscarPredio();
 
-		function buscarDepartamentos(){
-			var url = "buscarDepartamentos.php";
+
+        function buscarDepartamentos(){
+			var url = "buscatudo.php?predio="+$( "#selpredio" ).val();
 			$.get(url, mostrarDepartamentos, 'json');
 		}
 		
@@ -81,7 +84,6 @@
 			});
 			
 		}
-        buscarDepartamentos();
       
 </script>
 </html>
