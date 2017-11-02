@@ -1,6 +1,8 @@
 <?php
 require "modelo.php";
 require "connect.php";
+require "onlyP.php";
+
 $idbem = $_COOKIE['aux2'];
 
 if(!$_POST['bx_motivo']){
