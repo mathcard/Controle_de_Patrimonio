@@ -30,15 +30,15 @@ require "connect.php";
             <?php
 	$LOGIN = $_SESSION['login'];
 
-	$sql2 = $con->query("select sigla from usuario where login = '$LOGIN'");
+	$sql2 = $con->query("select id, sigla from usuario where login = '$LOGIN'");
 	$row = $sql2->fetch(PDO::FETCH_OBJ);
+	$usuario = $row->id;
 	$sig = $row->sigla;
 
 
-
 	    $pat= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join usuario u on m.idsolicitante = u.id where m.idautorizador is null");
-            
-	    $dep= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join sala s on s.numero = m.numsalaorigem inner join departamento d on d.sigla = s.sigladpto inner join usuario u on u.sigla = d.sigla  where m.idautorizador is null and u.sigla = '$sig';");
+ #CHEFE DEPARTAMENTO - lista apenas mbp´s que saiam do seu DP;           
+	    $dep= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join sala s on s.numero = m.numsalaorigem inner join departamento d on d.sigla = s.sigladpto inner join usuario u on u.sigla = d.sigla  where m.idautorizador is null and u.sigla = '$sig' and u.id = '$usuario';");
 
 	if($tipo == 'P'){
 	$sql = $pat;
