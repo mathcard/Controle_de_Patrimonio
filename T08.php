@@ -21,7 +21,8 @@ require "connect.php";
                     <th>Solicitante</th>
                     <th>Sala Origem </th>
                     <th>Sala Destino</th>
-                    <th class='actions text-center'>Ação</th>
+                    <th class='actions text-center'>Autorizada</th>
+                    <th class='actions text-center'>Negada</th>
                 </tr>
             </thead>
     </div>
@@ -59,8 +60,15 @@ require "connect.php";
                 echo "<td>
 		<a href='T08aut.php?numero=$num'>
 		<input type='button' name='insert' value='Autorizar' />
-		</a></td>";
-                echo "</tr>";
+		</a></td>
+		<td>
+		<a href='T08nao.php?numero=$num'>
+                <input type='button' name='insert' value='Negar' />
+                </a></td>";
+	        
+
+
+        echo "</tr>";
             
         }
             ?>
@@ -69,7 +77,6 @@ require "connect.php";
     </div>
     <div class="etc-login-form">
         <a href="index.php">Voltar</a>        
-        <a href="T11.php">Listar novamente</a>
     </div>
     <!-- end:Main Form -->
 </body>
