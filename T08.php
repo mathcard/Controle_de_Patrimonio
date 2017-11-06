@@ -39,7 +39,7 @@ require "connect.php";
 
 	    $pat= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join usuario u on m.idsolicitante = u.id where m.idautorizador is null");
  #CHEFE DEPARTAMENTO - lista apenas mbp´s que saiam do seu DP;           
-	    $dep= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join sala s on s.numero = m.numsalaorigem inner join departamento d on d.sigla = s.sigladpto inner join usuario u on u.sigla = d.sigla  where m.idautorizador is null and u.sigla = '$sig' and u.id = '$usuario';");
+	    $dep= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join sala s on s.numero = m.numsalaorigem inner join departamento d on d.sigla = s.sigladpto inner join usuario u on u.id = m.idsolicitante  where m.idautorizador is null and d.sigla = '$sig';");
 
 	if($tipo == 'P'){
 	$sql = $pat;
