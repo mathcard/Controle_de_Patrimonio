@@ -5,11 +5,11 @@ senha1 = document.getElementById('us_passwd').value;
 senha2 = document.getElementById('us_passwd2').value;
         if(senha1 != senha2){
                 alert('As senhas não são iguais');
-        return false;
         }
-	if(!document.getElementById('funcionario').checked && !document.getElementById('chdepartamento').checked && !document.getElementById('chpatrimonio').checked.checked){
-	window.alert("É necessario marcar a profissão.");
-	 }
+	if(!document.getElementById('funcionario').checked && !document.getElementById('chdepartamento').checked && !document.getElementById('chpatrimonio').checked){
+		alert('É necessario classificar o usuario');
+	return false;
+	}
         return true;
 }
 </script>
@@ -22,40 +22,40 @@ senha2 = document.getElementById('us_passwd2').value;
                     <div class="login-group">
                         <div class="form-group">
                             <label for="us_log" class="sr-only">Login</label>
-                            <input type="text" class="form-control" id="us_log" name="us_log" placeholder="Login" size="20" required >
+                            <input type="text" class="form-control" id="us_log" name="us_log" placeholder="Login" maxlength="20" required />
                         </div>
                         <div class="form-group">
                             <label for="us_nome" class="sr-only">Nome</label>
-                            <input type="text" class="form-control" id="us_nome" name="us_nome" placeholder="Nome" size="50" required >
+                            <input type="text" class="form-control" id="us_nome" name="us_nome" placeholder="Nome" maxlength="50" required />
                         </div>
                         <div class="form-group">
                             <label for="us_passwd" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="us_passwd" name="us_passwd" placeholder="Senha" size="32" required >
+                            <input type="password" class="form-control" id="us_passwd" name="us_passwd" placeholder="Senha" maxlength="32" required />
                         </div>
                         <div class="form-group">
                             <label for="us_passwd" class="sr-only">Confirmar Senha</label>
-                            <input type="password" class="form-control" id="us_passwd2" name="us_passwd2" placeholder="Confirmação de senha" size="32" required >
+                            <input type="password" class="form-control" id="us_passwd2" name="us_passwd2" placeholder="Confirmação de senha" maxlength="32" required />
                         </div>
                         <div class="form-group">
                             <label for="us_email" class="sr-only">Email</label>
-                            <input type="text" class="form-control" id="us_email" name="us_email" placeholder="Email" size="80" required >
+                            <input type="text" class="form-control" id="us_email" name="us_email" placeholder="Email" maxlength="80" required /> 
                         </div>
                         <div class="form-group">
                         <label for="sel1" class="sr-only">Prédio</label>
-                        <select class="form-control" id="selpredio" name="selpredio" title='Prédio' onchange="buscarDepartamentos()" required>
+                        <select class="form-control" id="selpredio" name="selpredio" title='Prédio' onchange="buscarDepartamentos()" required />
                                       <option>Prédio</option>
                                     </select>
                           </div>
                         <div class="form-group">
                             <label for="seldep" class="sr-only">Departamento</label>
-                            <select name="seldep" class="form-control" id="seldep" required >
+                            <select name="seldep" class="form-control" id="seldep" required />
 
 									<option value="" selected disabled hidden>Departamento</option>
 
                                 </select>
                         </div>
                         <div class="form-group login-group-checkbox">
-                            <input type="radio" class="" name="reg_gender" value="F" id="funcionario" >
+                            <input type="radio" class="" name="reg_gender" value="F" id="funcionario">
                             <label for="funcionario">Funcionário</label>
 
                             <input type="radio" class="" name="reg_gender" value="D" id="chdepartamento">

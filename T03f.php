@@ -21,23 +21,23 @@ senha2 = document.getElementById('us_passwd2').value;
                     <div class="login-group">
                         <div class="form-group">
                             <label for="us_log" class="sr-only">Login</label>
-                            <input type="text" class="form-control" id="us_log" name="us_log" placeholder="Login" required >
+                            <input type="text" class="form-control" id="us_log" name="us_log" placeholder="Login" maxlength="20" required />
                         </div>
                         <div class="form-group">
                             <label for="us_nome" class="sr-only">Nome</label>
-                            <input type="text" class="form-control" id="us_nome" name="us_nome" placeholder="Nome" required >
+                            <input type="text" class="form-control" id="us_nome" name="us_nome" placeholder="Nome" maxlength="50" required />
                         </div>
                         <div class="form-group">
                             <label for="us_passwd" class="sr-only">Senha</label>
-                            <input type="password" class="form-control" id="us_passwd" name="us_passwd" placeholder="Senha" required >
+                            <input type="password" class="form-control" id="us_passwd" name="us_passwd" placeholder="Senha" maxlength="32" required />
                         </div>
                         <div class="form-group">
                             <label for="us_passwd" class="sr-only">Confirmar Senha</label>
-                            <input type="password" class="form-control" id="us_passwd2" name="us_passwd2" placeholder="Confirmação de senha" required >
+                            <input type="password" class="form-control" id="us_passwd2" name="us_passwd2" placeholder="Confirme a senha" maxlength="32" required />
                         </div>
                         <div class="form-group">
                             <label for="us_email" class="sr-only">Email</label>
-                            <input type="text" class="form-control" id="us_email" name="us_email" placeholder="Email" required >
+                            <input type="text" class="form-control" id="us_email" name="us_email" placeholder="Email" maxlength="80" required />
                         </div>
                         <input type="hidden" id="tipo" name="tipo" value="F">
                     </div>

@@ -40,7 +40,7 @@
     ?>	
 
       <a class="dropdown-item" href="T07.php">Criar MBP</a>
-      <a class="dropdown-item" href="T09.php">Localização dos Bens</a>
+      <a class="dropdown-item" href="T11.php">Inventário</a>
       <a class="dropdown-item" href="T10.php">Relação das MBPs</a>
       <a class="dropdown-item" href="logout.php">Logout</a>
       
@@ -53,9 +53,9 @@
 
       <a class="dropdown-item" href="T03.php">Incluir Usuario</a>
       <a class="dropdown-item" href="T07.php">Criar MBP</a>
-      <a class="dropdown-item" href="T09.php">Localização dos Bens</a>
+      <a class="dropdown-item" href="T11.php">Inventário</a>
       <a class="dropdown-item" href="T10.php">Relação das MBPs</a>
-      <a class="dropdown-item" href="T08.php">MBPs Pendentes</a>
+      <a class="dropdown-item" href="T09.php">MBPs Pendentes</a>
       <a class="dropdown-item" href="logout.php">Logout</a>
     
 <?php  
@@ -71,11 +71,10 @@
         <a class="dropdown-item" href="T02.php">Incluir Prédio</a>
         <a class="dropdown-item" href="T04.php">Incluir Departamento</a>
         <a class="dropdown-item" href="T05.php">Incluir Salas</a>
-        <a class="dropdown-item" href="T06.php">Cadastrar Bem</a>
         <a class="dropdown-item" href="T07.php">Criar MBP</a>
-        <a class="dropdown-item" href="T09.php">Localização dos Bens</a>
+        <a class="dropdown-item" href="T11.php">Inventário</a>
         <a class="dropdown-item" href="T10.php">Relação das MBPs</a>
-        <a class="dropdown-item" href="T08.php">MBPs Pendentes</a>
+        <a class="dropdown-item" href="T09.php">MBPs Pendentes</a>
         <a class="dropdown-item" href="logout.php">Logout</a>
 
 <?php  

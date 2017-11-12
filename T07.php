@@ -9,25 +9,25 @@
                     <div class="login-group">
                         <div class="form-group">
                             <label for="motivo" class="sr-only">Motivo</label>
-                            <textarea style="height: 100px" type="text" class="form-control" id="motivo" name="motivo" placeholder="Motivo"  size="200" required ></textarea>
+                            <textarea style="height: 100px" type="text" class="form-control" id="motivo" name="motivo" placeholder="Motivo" maxlength="200" required /></textarea>
                         </div>
                         <div class="form-group">
                             <label for="selbem" class="sr-only">Bem</label>
-                            <select class="form-control" id="selbem" name="selbem" title='Bem' onChange="javascript: buscarSala();" required >   
+                            <select class="form-control" id="selbem" name="selbem" title='Bem' onChange="javascript: buscarSala();" required />  
                                     <option>Bem</option> 
                                     </select>
                         </div>
 
                         <div class="form-group">
                             <label for="selsalao" class="sr-only">Sala Origem</label>
-                            <select class="form-control" id="selsalao" name="selsalao" onChange="javascript: buscarSalas();" required>
+                            <select class="form-control" id="selsalao" name="selsalao" onChange="javascript: buscarSalas();" required />
                                   <option>SalaOrigem</option>
 
                                 </select>
                         </div>
                         <div class="form-group">
                             <label for="selsalad" class="sr-only">Sala Destino</label>
-                            <select class="form-control" id="selsalad" name="selsalad" required >
+                            <select class="form-control" id="selsalad" name="selsalad" required />
                                   <option>SalaDestino</option>
   
                                 </select>

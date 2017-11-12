@@ -47,7 +47,7 @@ if (isset($_COOKIE['aux'])){
                     <div class="login-group">
                         <div class="form-group">
                             <label for="nome" class="sr-only">Nome</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required >
+                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required />
                         </div>
                     </div>
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
