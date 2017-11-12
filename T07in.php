@@ -8,7 +8,7 @@ $dest = $_POST['selsalad'];
 
 ### Sql buscar o ID solicitante ##
 $sql2 = $con->query("select id from usuario where login = '$LOGIN'");
-$row = $sql2->fetch(PDO::FETCH_OBJ);
+$row = $sql2->fetch(PDO::FETCH_OBJ);   
 $id = $row->id;
 
 ### Sql de inserção na tabela MBP ###
