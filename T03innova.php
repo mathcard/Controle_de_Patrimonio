@@ -29,6 +29,52 @@ if (isset($_POST['tipo'])){
 
             break;
     }
+/*
+if(!$a){
+echo "O LOGIN deve ser informada";
+}elseif(strlen($a) > 20){
+echo "O LOGIN TEM LIMITE de 20 cacteres";
+}
+
+if(!$b){
+echo "O NOME deve ser informada";
+}elseif(strlen($b) > 50){
+echo "O NOME TEM LIMITE de 50 cacteres";
+}
+
+if(!$c){
+echo "É necessario infomar a SENHA";
+}elseif(strlen($c) > 32){
+echo "A SENHA TEM LIMITE de 32 caracteres";
+}
+
+if(!$_POST['us_passwd2']){
+echo "É necessario confirmar a SENHA";
+}elseif(strlen($_POST['us_passwd2']) > 32){
+echo "A SENHA TEM LIMITE de 32 caracteres";
+}
+
+if($c != $_POST['us_passwd2']){
+echo "As senhas não são iguais!!!";
+}
+
+if(!$d){
+echo "É necessario infomar a EMAIL";
+}elseif(strlen($d) > 80){
+echo "A EMAIL TEM LIMITE de 80 caracteres";
+}
+
+if(($e != 'P')||($e !='D')||($e !='F')){
+echo "TIPO invalido ";
+}
+
+if(!$f){
+echo "É necessario informar a DEPARTAMENTO";
+}elseif (strlen($f)>5){
+echo "O DEPARTAMENTO TEM LIMITE de 5 caracteres";
+}
+
+*/
 	
 $sqlA = $con->prepare("update usuario set tipo = ? where tipo = ? and sigla = ?");
 $sqlA->execute(array("F","D",$f));
