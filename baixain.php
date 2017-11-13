@@ -1,22 +1,18 @@
 <?php
 require "modelo.php";
 require "connect.php";
-require "onlyP.php";
-
-$idbem = $_COOKIE['aux2'];
-
 if(!$_POST['bx_motivo']){
 	echo "É necessario informar o motivo";
-	header ("refresh:3; url=baixa.php?id={$idbem}");
+	header ("refresh:3; url=baixa.php");
 }
 $tipo = $_POST['bx_tipo'];
 if(($tipo!='D')&&($tipo!='E')&&($tipo!='I')&&($tipo!='V')&&($tipo!='O')){
 	echo "<br>Tipo de baixa invalido";
-	header ("refresh:3; url=baixa.php?id={$idbem}");
+	header ("refresh:3; url=baixa.php");
 }
 
 if(!empty($_POST['bx_motivo']) && !empty($_POST['bx_tipo'])){
-#$idbem = $_COOKIE['aux2'];
+$idbem = $_COOKIE['aux2'];
 $LOGIN = $_SESSION['login'];
 $motivo = $_POST['bx_motivo'];
 $tipo = $_POST['bx_tipo'];
