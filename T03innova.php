@@ -1,8 +1,10 @@
 <?php
 session_start();
 $id=$_SESSION['login'];
-
+require "modelo2.php";
 require "connect.php";
+echo "<br><br>";
+$aux = true;
 if (isset($_POST['selpredio'])) {
     $g=$_POST['selpredio'];
 }
@@ -13,7 +15,7 @@ $d=$_POST['us_email'];
 
 if (isset($_POST['tipo'])){
     $tipo=$_POST['tipo'];
-
+}
     switch ($tipo) {
         case 'F':
         $e='F';
@@ -29,53 +31,67 @@ if (isset($_POST['tipo'])){
 
             break;
     }
-/*
-if(!$a){
-echo "O LOGIN deve ser informada";
+
+if(empty($a)){
+	echo "O <b>LOGIN</b> deve ser informada.<br>";
+	$aux = false;
 }elseif(strlen($a) > 20){
-echo "O LOGIN TEM LIMITE de 20 cacteres";
+	echo "O <b>LOGIN</b> não deve exceder 20 caracteres.<br>";
+	$aux = false;
 }
 
-if(!$b){
-echo "O NOME deve ser informada";
+if(empty($b)){
+	echo "O <b>NOME</b> deve ser informada.<br>";
+	$aux = false;
 }elseif(strlen($b) > 50){
-echo "O NOME TEM LIMITE de 50 cacteres";
+	echo "O <b>NOME</b> não deve exceder 50 caracteres.<br>";
+	$aux = false;
 }
 
-if(!$c){
-echo "É necessario infomar a SENHA";
+if(empty($c)){
+	echo "É necessario infomar a <b>SENHA</b><br>";
+	$aux = false;
 }elseif(strlen($c) > 32){
-echo "A SENHA TEM LIMITE de 32 caracteres";
+	echo "A <b>SENHA</b> não deve exceder 32 caracteres. <br>";
+	$aux = false;
 }
 
-if(!$_POST['us_passwd2']){
-echo "É necessario confirmar a SENHA";
-}elseif(strlen($_POST['us_passwd2']) > 32){
-echo "A SENHA TEM LIMITE de 32 caracteres";
+if(empty($_POST['us_passwd2'])){
+	echo "É necessario confirmar a <b>SENHA</b>. <br>";
+	$aux = false;
 }
-
 if($c != $_POST['us_passwd2']){
-echo "As senhas não são iguais!!!";
+	echo "As <b>senhas</b> não são iguais!!!<br>";
+	$aux = false;
 }
 
-if(!$d){
-echo "É necessario infomar a EMAIL";
+if(empty($d)){
+	echo "É necessario infomar a <b>EMAIL</b><br>";
+	$aux = false;
 }elseif(strlen($d) > 80){
-echo "A EMAIL TEM LIMITE de 80 caracteres";
+	echo "O <b>EMAIL</b> não deve exceder 80 caracteres.<br>";
+	$aux = false;
 }
 
-if(($e != 'P')||($e !='D')||($e !='F')){
-echo "TIPO invalido ";
+if(empty($e)){
+	echo "É necessario informar a <b>TIPO</b><br>";
+	$aux = false;
+}elseif(($e != 'P')&&($e !='D')&&($e !='F')){
+	echo "<b>TIPO</b> de usuario invalido.<br> ";
+	$aux = false;
 }
 
 if(!$f){
-echo "É necessario informar a DEPARTAMENTO";
+	echo "É necessario informar o <b>DEPARTAMENTO</b><br>";
+	$aux = false;
 }elseif (strlen($f)>5){
-echo "O DEPARTAMENTO TEM LIMITE de 5 caracteres";
+	echo "O <b>DEPARTAMENTO</b> não deve exceder 5 caracteres. <br>";
+	$aux = false;
 }
-
-*/
 	
+	if($aux != true){
+		header ("refresh:5; url=T03.php");
+	}else{
 $sqlA = $con->prepare("update usuario set tipo = ? where tipo = ? and sigla = ?");
 $sqlA->execute(array("F","D",$f));
 
@@ -88,7 +104,7 @@ $sqlA->execute(array("F","D",$f));
     $resultado->bindParam(5, $e);
     $resultado->bindParam(6, $f);
     $resultado->execute();
-    header ("location: index.php");
+     echo "Usuario cadastrado com sucesso!";
+     header ("refresh:5; url=T03.php");
 }
-
 ?>
