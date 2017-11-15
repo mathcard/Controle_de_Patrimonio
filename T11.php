@@ -58,7 +58,7 @@ if (isset($_GET['ordem'])) {
     $mm=' > ';
 
 }
-
+$dataX="&data=". $data10;
 #$data2=",baixabempatrimonial where datacompra<" . $data . "'2000-10-16' AND baixabempatrimonial.data<'" . $data . "'";
 #$data1=" and datacompra<" . $data . "'2000-10-16' AND baixabempatrimonial.data<'" . $data . "'";
 #$meio=", baixabempatrimonial ";
@@ -113,16 +113,16 @@ if (isset($_COOKIE['aux'])){
             <thead>
                 <tr>
                 <?php
-                    echo "<th><a href='T11.php?ordem=numero{$pnome}'>Código</a></th>";
-                    echo "<th><a href='T11.php?ordem=descricao{$pnome}'>Descrição</a></th>";
-                    echo "<th><a href='T11.php?ordem=datacompra{$pnome}'>Data da Compra</a></th>";
-                    echo "<th><a href='T11.php?ordem=prazogarantia{$pnome}'>Garantia</a></th>";
-                    echo "<th><a href='T11.php?ordem=nrnotafiscal{$pnome}'>Nota</a></th>";
-                    echo "<th><a href='T11.php?ordem=fornecedor{$pnome}'>Fornecedor</a></th>";
-                    echo "<th><a href='T11.php?ordem=valor{$pnome}'>Valor</a></th>";
-                    echo "<th><a href='T11.php?ordem=situacao{$pnome}'>Situação</a></th>";
-                    echo "<th><a href='T11.php?ordem=codcategoria{$pnome}'>Categoria</a></th>";
-                    echo "<th><a href='T11.php?ordem=numsala{$pnome}'>Sala</a></th>";
+                    echo "<th><a href='T11.php?ordem=numero{$pnome}{$dataX}'>Código</a></th>";
+                    echo "<th><a href='T11.php?ordem=descricao{$pnome}{$dataX}'>Descrição</a></th>";
+                    echo "<th><a href='T11.php?ordem=datacompra{$pnome}{$dataX}'>Data da Compra</a></th>";
+                    echo "<th><a href='T11.php?ordem=prazogarantia{$pnome}{$dataX}'>Garantia</a></th>";
+                    echo "<th><a href='T11.php?ordem=nrnotafiscal{$pnome}{$dataX}'>Nota</a></th>";
+                    echo "<th><a href='T11.php?ordem=fornecedor{$pnome}{$dataX}'>Fornecedor</a></th>";
+                    echo "<th><a href='T11.php?ordem=valor{$pnome}{$dataX}'>Valor</a></th>";
+                    echo "<th><a href='T11.php?ordem=situacao{$pnome}{$dataX}'>Situação</a></th>";
+                    echo "<th><a href='T11.php?ordem=codcategoria{$pnome}{$dataX}'>Categoria</a></th>";
+                    echo "<th><a href='T11.php?ordem=numsala{$pnome}{$dataX}'>Sala</a></th>";
                     echo "<th><a href='#'>Depreciaçao</a></th>";
                     echo "<th class='actions text-center'>Ação</th>";
                     ?>
