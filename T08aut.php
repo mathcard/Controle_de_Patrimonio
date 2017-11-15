@@ -1,7 +1,9 @@
 <?php
 require "connect.php";
 require "verifica.php";
+require "modelo2.php";
 	if($tipo == 'F'){
+				echo "Você não tem autoridade para realizar essa ação."
                 header ("location:index.php");
         }
 
@@ -45,7 +47,7 @@ if($tipo=='P'){
 	$sql2 = $con->prepare("update MBP set dataconfirmacao = ?, horaconfirmacao = ?, idautorizador = ? where numero = ? ");
 	$sql2->execute(array($data,$hora,$id,$bem));
 	} else{
-		header ("location: T08.php");
+		header ("location: index.php");
 	}
 
 }

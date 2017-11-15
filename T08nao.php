@@ -1,7 +1,9 @@
 <?php
 require "connect.php";
 require "verifica.php";
+require "modelo2.php";
 	if($tipo=='F'){
+	echo "Você não tem autoridade para realizar essa ação";
 	header ("location:index.php");
 }
 $LOGIN = $_SESSION['login'];
@@ -24,10 +26,10 @@ $sql2 = $con->prepare("delete from mbp where idautorizador is null and numero = 
 $sql2->bindParam(1, $bem);
 $sql2->execute();
 	}else{
-		header("location: T08.php");
+		header("location: index.php");
 	}
 
 }
 
-header ("location: T08.php")
+header ("location: index.php")
 ?>

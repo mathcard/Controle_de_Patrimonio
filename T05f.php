@@ -72,7 +72,8 @@
 
 
         function buscarDepartamentos(){
-			var url = "buscatudo.php?predio="+$( "#selpredio" ).val();
+			//var url = "buscatudo.php?predio="+$( "#selpredio" ).val();
+            var url = "buscarDepartamento.php";
 			$.get(url, mostrarDepartamentos, 'json');
 		}
 		

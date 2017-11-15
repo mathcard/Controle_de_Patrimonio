@@ -1,4 +1,7 @@
-<?php require "modelo.php"; ?>
+<?php 
+require "modelo.php"; 
+require "onlyP.php";
+?>
 <script>
 function comp(){
 senha1 = document.getElementById('us_passwd').value;
@@ -17,7 +20,7 @@ senha2 = document.getElementById('us_passwd2').value;
         <div class="logo">Inclusão de Usuário</div>
         <!-- Main Form -->
         <div class="login-form-1" >
-            <form id="login-form" class="text-left" method="post" action="T03innova.php" onSubmit="return comp();">
+            <form id="login-form" class="text-left" method="post" action="T03in.php" onSubmit="return comp();">
                 <div style="width:500px" class="main-login-form">
                     <div class="login-group">
                         <div class="form-group">
@@ -64,7 +67,7 @@ senha2 = document.getElementById('us_passwd2').value;
                             <input type="radio" class="" name="reg_gender" value="P" id="chpatrimonio">
                             <label for="chpatrimonio">Ch. Patrimonio</label>
                         </div>
-                        <input type="hidden" id="tipo" name="tipo" value="C">
+                        <input type="hidden" id="tipo" name="tipo" value="P">
                     </div>
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>

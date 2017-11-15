@@ -33,7 +33,7 @@ if(empty($nome)){
 		$resultado->bindParam(2, $nome);
 		$resultado->execute();
 		echo "Departamento incluído com sucesso!!!";
-		header ("refresh:5; url=T04f.php");
+		header ("refresh:5; url=T04.php");
 	}
 
 ?>

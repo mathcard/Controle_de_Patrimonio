@@ -50,9 +50,19 @@ if (!empty($_POST['reg_gender'])) {
     $sql = "UPDATE usuario SET " . $tipo . " WHERE id = " . $numero; 
     $resultado = $con->prepare($sql);
     $resultado->execute();
+#####
+    if ($tipo = 'P'){
+        $sqlX = $con->query("select sigla from Usuario WHERE id =  '$numero'"); 
+        $row = $sqlX->fetch(PDO::FETCH_OBJ);
+        $sig = $row->sigla;
+
+        $sqlA = $con->prepare("update usuario set tipo = ? where tipo = ? and sigla = ? and id != ?");
+        $sqlA->execute(array("F","D",$sig,$numero));
 
     }
-
+    
+    } 
+####   
     header ("location: T03.php");
 
 ?>

@@ -1,7 +1,10 @@
 <?php 
 require "modelo.php";
 require "connect.php"; 
-
+if (($tipo != 'D')&&($tipo != 'P')){
+    echo "Você não tem permissão para realizar essa ação";
+    header ("refresh:5; url=T03.php");
+}else{
 $id=$_SESSION['login'];
 $sql2 = $con->query("select * from usuario where login = '$id'");
 $row = $sql2->fetch(PDO::FETCH_OBJ);
@@ -56,7 +59,8 @@ if (isset($_COOKIE['aux'])){
                 <?php
                         if ($tipo == 'P') {
                             echo "<a href='T03c.php'>Incluir Usuário</a>";
-                        }else {
+                        }
+                        if ($tipo == 'D'){
                             echo "<a href='T03f.php'>Incluir Usuário</a>";
                         }
                 ?>
@@ -153,4 +157,5 @@ function SetCookies(c_name,value,expiredays)
 }
 
 </script>
+<?php } ?>
 </html>

@@ -1,4 +1,11 @@
-<?php require "modelo.php"; ?>
+<?php require "modelo.php"; 
+
+if ($tipo != 'D'){
+    echo "Você não tem permissão para realizar essa ação";
+    header ("refresh:5; url=T03.php");
+}else{
+?>
+
 <script>
 function comp(){
  
@@ -16,7 +23,7 @@ senha2 = document.getElementById('us_passwd2').value;
         <div class="logo">Inclusão de Usuário</div>
         <!-- Main Form -->
         <div class="login-form-1" >
-            <form id="login-form" class="text-left" method="post" action="T03innova.php" onSubmit="return comp();">
+            <form id="login-form" class="text-left" method="post" action="T03in.php" onSubmit="return comp();">
                 <div style="width:500px" class="main-login-form">
                     <div class="login-group">
                         <div class="form-group">
@@ -39,7 +46,7 @@ senha2 = document.getElementById('us_passwd2').value;
                             <label for="us_email" class="sr-only">Email</label>
                             <input type="text" class="form-control" id="us_email" name="us_email" placeholder="Email" maxlength="80" required />
                         </div>
-                        <input type="hidden" id="tipo" name="tipo" value="F">
+                        <input type="hidden" id="tipo" name="tipo" value="D">
                     </div>
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>
@@ -54,7 +61,5 @@ senha2 = document.getElementById('us_passwd2').value;
     <!-- end:Main Form -->
 
 </body>
-<script>
-
-</script>
+<?php } ?>
 </html>
