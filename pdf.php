@@ -1,6 +1,14 @@
 <?php
 require('fpdf/fpdf.php');
 require "connect.php"; 
+$data10 = $_GET['data10'];
+$mm = $_GET['mm'];
+
+if(empty($_GET['ordem'])){
+    $ordem = $_GET['ordem'];
+}else{
+    $ordem="";
+}
 
 class Documento1 extends FPDF
 {
@@ -35,11 +43,14 @@ class Documento1 extends FPDF
 $pdf = new Documento1('P', 'pt', 'A4');
 $pdf->AddPage('L');
 $pdf->AliasNbPages();
-$sql= "SELECT * FROM bempatrimonial ORDER BY numero ";
-$resultado = $con->prepare($sql);
+$sqlX= "SELECT * FROM bempatrimonial where numero in
+            ((select b.numero from bempatrimonial b where b.situacao = 'I' and b.datacompra <= '{$data10}')
+            union all
+            (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}'))" . $ordem;
+
+
+$resultado = $con->prepare($sqlX);
 $resultado->execute();
-
-
 
 while ($row = $resultado->fetchObject()) {
 

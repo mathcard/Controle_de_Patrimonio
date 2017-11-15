@@ -45,10 +45,7 @@ if (isset($_GET['ordem'])) {
 }else {
     $ordem="";
 }
-
-
     if (!empty($_GET['data'])){
-        echo"is empty";
     $data10=$_GET['data'];
     $mm=' < ';
 
@@ -140,31 +137,23 @@ if (isset($_COOKIE['aux'])){
 if(!empty($_GET['nome'])){
 
     $nome = "%" . $_GET['nome'] . "%";
-    echo $nome . "  ";
    // $sql= "SELECT * FROM bempatrimonial " . $meio . " WHERE upper(descricao) LIKE upper(:nome)". $data1 . $ordem;
-    $sql= "SELECT * FROM bempatrimonial where numero in
+    $sqlX= "SELECT * FROM bempatrimonial where numero in
     ((select b.numero from bempatrimonial b where b.situacao = 'I' and b.datacompra <= '{$data10}')
     union all
     (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}')) and upper(descricao) like upper('{$nome}')" . $ordem;
-    $resultado = $con->prepare($sql);
+    $resultado = $con->prepare($sqlX);
    // $resultado->bindParam(':nome', $nome, PDO::PARAM_STR);
     $resultado->execute();
     #$total = $resultado->rowCount();
 
 }else{
-            ###
             $sqlX= "SELECT * FROM bempatrimonial where numero in
             ((select b.numero from bempatrimonial b where b.situacao = 'I' and b.datacompra <= '{$data10}')
             union all
             (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}'))" . $ordem;
             $resultado = $con->prepare($sqlX);
             $resultado->execute();
-
-            ###
-           # $sql= "SELECT * FROM bempatrimonial " . $data2 . $ordem;
-           # $resultado = $con->prepare($sql);
-           # $resultado->execute();
-            #$total = $resultado->rowCount();
             }
         
 
@@ -203,6 +192,8 @@ if(!empty($_GET['nome'])){
     <div class="etc-login-form">
         <a href="index.php">Voltar</a>        
         <a href="T11.php" onClick="SetCookies('aux','','-1')">Listar novamente</a>
+        <?php  echo "<a href='pdf.php?data10={$data10}&mm={$mm}&ordem={$ordem}'> Imprime PDF</a>"; ?>
+        
     </div>
 
 </body>
