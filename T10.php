@@ -94,25 +94,22 @@ if(!empty($_GET['motivo'])){
         $motivo = "%" . $_GET['motivo'] . "%";
 #        $sql= "SELECT * FROM mbp WHERE upper(motivo) LIKE upper(:motivo)" . $ordem;
 
-                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, m.horaconfirmacao as horaconfirmacao, u.nome as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id  WHERE upper(motivo) LIKE upper(:motivo)" . $ordem;
+                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, m.horaconfirmacao as horaconfirmacao, u.login as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id  WHERE upper(motivo) LIKE upper(:motivo)" . $ordem;
         $resultado = $con->prepare($sql);
         $resultado->bindParam(':motivo', $motivo, PDO::PARAM_STR);
         $resultado->execute();
     }else{
 #                $sql= "SELECT * FROM mbp " . $ordem;
-                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, m.horaconfirmacao as horaconfirmacao, u.nome as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id " . $ordem;
+                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, to_char(m.horaconfirmacao, 'HH:MI') as horaconfirmacao, u.login as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id " . $ordem;
                 $resultado = $con->prepare($sql);
-                $resultado->execute();
+                $resultado->execute();                
                 }
-            
-    
             while ($row = $resultado->fetchObject()) {
                 echo "<tr>";          
                 echo "<td><b>{$row->numero}</b></td>";
                 echo "<td><b>{$row->motivo}</b></td>";
                 echo "<td><b>{$row->dataconfirmacao}</b></td>";
                 echo "<td><b>{$row->horaconfirmacao}</b></td>";
-#                echo "<td><b>{$row->idsolicitante}</b></td>";
                 echo "<td><b>{$row->solicitante}</b></td>";
                 echo "<td><b>{$row->idautorizador}</b></td>";
                 echo "<td><b>{$row->numerobem}</b></td>";
