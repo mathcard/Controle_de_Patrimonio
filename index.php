@@ -3,8 +3,6 @@ require "modelo.php";
 require "connect.php";
 
 ###################
-
-
 if (isset($_GET['ordem'])) {
     $ordem=" ORDER BY " . $_GET['ordem'];
 }else {
@@ -26,17 +24,6 @@ if (isset($_COOKIE['aux'])){
 }else {
     $pnome="";
 }
-
-
-
-
-
-
-
-
-
-
-
 #####################
 ?>
    <div style="margin-left:33%;padding:70px 0">
@@ -50,9 +37,11 @@ if (isset($_COOKIE['aux'])){
             <thead>
                 <tr>
 		<?php
-		echo "<th><a href='index.php?ordem=numero{$pnome}'>Código</a></th>";		  echo "<th><a href='index.php?ordem=datasolicitacao{$pnome}'>Data Solicitação</a></th>";
+	echo "<th><a href='index.php?ordem=num{$pnome}'>Código</a></th>";
+	 echo "<th><a href='index.php?ordem=datasolicitacao{$pnome}'>Data Solicitação</a></th>";
+		echo "<th><a href='index.php?ordem=bem{$pnome}'>Bem</a></th>";
 		echo "<th><a href='index.php?ordem=motivo{$pnome}'>Motivo</a></th>";
-		echo "<th><a href='index.php?ordem=nome{$pnome}'>Solicitante</a></th>";
+		echo "<th><a href='index.php?ordem=user{$pnome}'>Solicitante</a></th>";
 		echo "<th><a href='index.php?ordem=numsalaorigem{$pnome}'>Sala Origem</a></th>";
 
 		echo "<th><a href='index.php?ordem=numsaladestino{$pnome}'>Sala Destino</a></th>";
@@ -73,9 +62,9 @@ if (isset($_COOKIE['aux'])){
 	$sig = $row->sigla;
 
 
-	    $pat= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join usuario u on m.idsolicitante = u.id where m.idautorizador is null $ordem ");
+	    $pat= $con->prepare("select m.numero as num, m.datasolicitacao as datas, b.numero as bem, b.descricao as desc, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, s.sigladpto as dep, m.numsaladestino as salad from mbp m inner join usuario u on m.idsolicitante = u.id inner join bempatrimonial b on b.numero = m.numerobem inner join sala s on s.numero = m.numsalaorigem where m.idautorizador is null $ordem ");
  #CHEFE DEPARTAMENTO - lista apenas mbp´s que saiam do seu DP;           
-	    $dep= $con->prepare("select m.numero as num, m.datasolicitacao as datas, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, m.numsaladestino as salad from mbp m inner join sala s on s.numero = m.numsalaorigem inner join departamento d on d.sigla = s.sigladpto inner join usuario u on u.id = m.idsolicitante  where m.idautorizador is null and d.sigla = '$sig' $ordem");
+	    $dep= $con->prepare("select m.numero as num, m.datasolicitacao as datas, b.numero as bem, b.descricao as desc, m.motivo as mot, u.nome as  user, m.numsalaorigem as salao, s.sigladpto as dep, m.numsaladestino as salad from mbp m inner join sala s on s.numero = m.numsalaorigem inner join departamento d on d.sigla = s.sigladpto inner join usuario u on u.id = m.idsolicitante inner join bempatrimonial b on b.numero = m.numerobem  where m.idautorizador is null and d.sigla = '$sig' $ordem");
 
 	if($tipo == 'P'){
 	$sql = $pat;
@@ -88,9 +77,10 @@ if (isset($_COOKIE['aux'])){
                 echo "<tr>";
 		echo "<td><b>{$row->num}</b></td>";
                 echo "<td><b>{$row->datas}</b></td>";
+                echo "<td><b>{$row->bem}-{$row->desc}</b></td>";
                 echo "<td><b>{$row->mot}</b></td>";
                 echo "<td><b>{$row->user}</b></td>";
-                echo "<td><b>{$row->salao}</b></td>";
+                echo "<td><b>{$row->salao}-{$row->dep}</b></td>";
                 echo "<td><b>{$row->salad}</b></td>";
 		$num=$row->num;
                 echo "<td>
@@ -99,12 +89,9 @@ if (isset($_COOKIE['aux'])){
 		</a></td>
 		<td>
 		<a href='T08nao.php?numero=$num'>
-                <input type='button' name='insert' value='Negar' />
+                <input type='button' name='insert' value='Negar'/>
                 </a></td>";
-	        
-
-
-        echo "</tr>";
+	        echo "</tr>";
             
         }
             ?>
