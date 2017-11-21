@@ -74,8 +74,8 @@ if (isset($_COOKIE['aux'])){
                 <?php
                     echo "<th><a href='T10.php?ordem=numero{$pnome}'>Código</a></th>";
                     echo "<th><a href='T10.php?ordem=motivo{$pnome}'>Motivo</a></th>";
-                    echo "<th><a href='T10.php?ordem=dataconfirmacao{$pnome}'>Data de Confirmação</a></th>";
-                    echo "<th><a href='T10.php?ordem=horaconfirmacao{$pnome}'>Hora da Confirmação</a></th>";
+                    echo "<th><a href='T10.php?ordem=dataconfirmacao{$pnome}'>Data</a></th>";
+                    echo "<th><a href='T10.php?ordem=horaconfirmacao{$pnome}'>Horario</a></th>";
                     echo "<th><a href='T10.php?ordem=idsolicitante{$pnome}'>Solicitante</a></th>";
                     echo "<th><a href='T10.php?ordem=idautorizador{$pnome}'>Autorizador</a></th>";
                     echo "<th><a href='T10.php?ordem=numerobem{$pnome}'>Codigo Bem</a></th>";
@@ -94,13 +94,13 @@ if(!empty($_GET['motivo'])){
         $motivo = "%" . $_GET['motivo'] . "%";
 #        $sql= "SELECT * FROM mbp WHERE upper(motivo) LIKE upper(:motivo)" . $ordem;
 
-                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, m.horaconfirmacao as horaconfirmacao, u.login as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id  WHERE upper(motivo) LIKE upper(:motivo)" . $ordem;
+                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, m.horaconfirmacao as horaconfirmacao, u.login as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, b.descricao as bem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id inner join bempatrimonial b on b.numero = m.numerobem WHERE upper(motivo) LIKE upper(:motivo)" . $ordem;
         $resultado = $con->prepare($sql);
         $resultado->bindParam(':motivo', $motivo, PDO::PARAM_STR);
         $resultado->execute();
     }else{
 #                $sql= "SELECT * FROM mbp " . $ordem;
-                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, to_char(m.horaconfirmacao, 'HH:MI') as horaconfirmacao, u.login as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id " . $ordem;
+                $sql= "SELECT m.numero as numero, m.motivo as motivo, m.dataconfirmacao as dataconfirmacao, to_char(m.horaconfirmacao, 'HH:MI') as horaconfirmacao, u.login as solicitante, m.idautorizador as idautorizador, m.numerobem as numerobem, b.descricao as bem, m.numsalaorigem as numsalaorigem, m.numsaladestino as numsaladestino FROM mbp m inner join usuario u on  m.idsolicitante = u.id inner join bempatrimonial b on b.numero = m.numerobem " . $ordem;
                 $resultado = $con->prepare($sql);
                 $resultado->execute();                
                 }
@@ -112,7 +112,7 @@ if(!empty($_GET['motivo'])){
                 echo "<td><b>{$row->horaconfirmacao}</b></td>";
                 echo "<td><b>{$row->solicitante}</b></td>";
                 echo "<td><b>{$row->idautorizador}</b></td>";
-                echo "<td><b>{$row->numerobem}</b></td>";
+                echo "<td><b>{$row->numerobem}-{$row->bem}</b></td>";
                 echo "<td><b>{$row->numsalaorigem}</b></td>";
                 echo "<td><b>{$row->numsaladestino}</b></td>";            
                 echo "</tr>";
