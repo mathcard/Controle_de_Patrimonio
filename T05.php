@@ -125,7 +125,7 @@ if(!empty($_GET['nome'])){
          <a href='excluirSala.php?id=$id'>
                 <input type='button' name='insert' value='Apagar' />
                 </a>";
-                echo "<a href='alteraSala.php?id=$id'>
+                echo "<a href='alterasala.php?id=$id'>
                        <input type='button' name='insert' value='Editar' />
                        </a></td>";
                 echo "</tr>";

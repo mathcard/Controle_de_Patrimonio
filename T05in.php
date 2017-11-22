@@ -67,7 +67,7 @@ if(empty($_POST['seldep'])){
 		$resultado->bindParam(5, $_POST['selpredio']);
 		$resultado->bindParam(6, $_POST['seldep']);
 		$resultado->execute();
-		echo "Categoria incluida com sucesso!!!";
-		header ("refresh:5; url=T05f.php");	
+		echo "Sala incluida com sucesso!!!";
+		header ("refresh:3; url=T05.php");	
 	}
 ?>
