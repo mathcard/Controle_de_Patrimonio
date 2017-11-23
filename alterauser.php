@@ -1,7 +1,9 @@
 <?php 
 require "modelo.php"; 
 require "connect.php"; 
-
+if($tipo =='F'){
+		header ("location:index.php");
+}else{
 if (!isset($_GET['id'])) {
     echo "Esse usuario não existe. Você será redirecionado para a pagina de listagem de usuarios.";
     header ("refresh:3;url=T03.php");
@@ -68,6 +70,7 @@ function esconde(field,check) {
         }
     }
     </script>
+<?php if($tipo == 'P'){ ?>	
     <div style="margin-left:33%;padding:70px 0">
         <div class="logo">Escolha os itens a serem alterados</div>
         <!-- Main Form -->
@@ -158,6 +161,60 @@ function esconde(field,check) {
     </div>
 
 </body>
+<?php }else{?>
+<div style="margin-left:33%;padding:70px 0">
+        <div class="logo">Escolha os itens a serem alterados</div>
+        <!-- Main Form -->
+        <div class="login-form-1">
+            <form id="login-form" class="text-left" method="POST" action="alterauserin.php">
+                <div style="width:500px" class="main-login-form">
+                    <div class="login-group">
+                    <div class="form-group">
+                    <input type="checkbox" id="uslogChk" name="uslogChk" onclick="esconde('uslogDiv', 'uslogChk');"/>
+						<label for="uslogChk">Login</label>
+					</div>
+                    <div class="form-group" id="uslogDiv" name="uslogDiv">
+                    <label for="us_log" class="sr-only">Login</label>
+                    <input type="text" class="form-control" id="us_log" name="us_log" placeholder="Login">
+                </div>
+                        <div class="form-group">
+                    <input type="checkbox" id="usnomeChk" name="usnomeChk" onclick="esconde('usnomeDiv', 'usnomeChk');"/>
+						<label for="usnomeChk">Nome</label>
+					</div>
+                    <div class="form-group" id="usnomeDiv" name="usnomeDiv">
+                    <label for="us_nome" class="sr-only">Nome</label>
+                    <input type="text" class="form-control" id="us_nome" name="us_nome" placeholder="Nome">
+                </div>
+                        <div class="form-group">
+                    <input type="checkbox" id="uspasswdChk" name="uspasswdChk" onclick="esconde('uspasswdDiv', 'uspasswdChk');"/>
+						<label for="uspasswdChk">Senha</label>
+					</div>
+                    <div class="form-group" id="uspasswdDiv" name="uspasswdDiv">
+                    <label for="us_passwd" class="sr-only">Senha</label>
+                    <input type="password" class="form-control" id="us_passwd" name="us_passwd" placeholder="Senha">
+                </div>
+                        <div class="form-group">
+                    <input type="checkbox" id="usemailChk" name="usemailChk" onclick="esconde('usemailDiv', 'usemailChk');"/>
+						<label for="usemailChk">Email</label>
+					</div>
+                    <div class="form-group" id="usemailDiv" name="usemailDiv">
+                    <label for="us_email" class="sr-only">Email</label>
+                    <input type="text" class="form-control" id="us_email" name="us_email" placeholder="Email">
+                </div>                                              
+                        <?php echo "<input type='hidden' id='numero' name='numero' value='{$numero}'/>"; ?>
+</div>
+
+                    <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                </div>
+                <div class="etc-login-form">
+                    <a href="T03.php">Voltar</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+<?php } ?>
+
 <script>
 		
 		function buscarPredio(){
@@ -189,5 +246,7 @@ function esconde(field,check) {
 			
 		}
 </script>
-<?php } ?>
+<?php }
+}
+ ?>
 </html>
