@@ -19,7 +19,7 @@
 
 require "modelo.php";
 require "connect.php"; 
-
+require "onlyP.php";
 $id=$_SESSION['login'];
 $sql2 = $con->query("select * from usuario where login = '$id'");
 $row = $sql2->fetch(PDO::FETCH_OBJ);
@@ -122,7 +122,7 @@ if(!empty($_GET['nome'])){
          <a href='excluirDepartamento.php?id=$id'>
                 <input type='button' name='insert' value='Apagar' />
                 </a>";
-                echo "<a href='alteraDepartamento.php?id=$id'>
+                echo "<a href='alteradepartamento.php?id=$id'>
                        <input type='button' name='insert' value='Editar' />
                        </a></td>";
                 echo "</tr>";
