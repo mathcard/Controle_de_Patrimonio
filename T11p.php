@@ -1,5 +1,3 @@
-
-
 <script type='text/javascript'>
 
 (function()
@@ -22,29 +20,25 @@
 require "modelo.php";
 require "connect.php"; 
 
-/*
-if (!empty($_GET['selpredio'])) {
-    if (isset($_GET['seldep'])) {
-        if (isset($_GET['selsala'])) {
-            $inner=", sala, predio, departamento ";
-            $select=" and bempatrimonial.numsala=sala.numero and sala.numero={$_GET['selsala']}";
-        }
-    $inner=", sala, departamento";
-    $select=" and bempatrimonial.numsala=sala.numero and sala.sigladpto=departamento.sigla and departamento.sigla={$_GET['seldep']}";
-    }
-$inner=", sala, predio, departamento ";
-$predio=" and bempatrimonial.numsala=sala.numero and sala.codpredio=predio.codigo and predio.codigo={$_GET['selpredio']}";
-}else{
-$inner="";
-$predio="";
-}
-
-*/
 if (isset($_GET['ordem'])) {
-    $ordem=" ORDER BY " . $_GET['ordem'];
+    $ordem=" ORDER BY bp." . $_GET['ordem'];
 }else {
     $ordem="";
 }
+    if (!empty($_GET['data'])){
+    $data10=$_GET['data'];
+    $mm=' < ';
+
+}else {
+    $sql= "SELECT date FROM current_date";
+    $resultado = $con->prepare($sql);
+    $resultado->execute();
+    $row = $resultado->fetchObject();
+    $data10=$row->date;
+    $mm=' > ';
+
+}
+$dataX="&data=". $data10;
 
 if (isset($_GET['nome'])) {
    setcookie('aux',$_GET['nome'], time() + 30);
@@ -62,40 +56,60 @@ if (isset($_COOKIE['aux'])){
     $pnome="";
 }
 
+
+
+if (isset($_GET['selpredio'])) {
+    setcookie('auxp',$_GET['selpredio'], time() + 60);
+ }else{
+ $ppredio="";
+ $predio="";
+ $pred="";
+ }
+ 
+ if (isset($_COOKIE['auxp'])){
+     if (empty($_COOKIE['auxp'])){
+         $ppredio="";
+         $predio="";
+         $pred="";
+     }else {
+         $ppredio="&selpredio=" . $_COOKIE['auxp'];
+         $predio=" and sala.codpredio=" . $_COOKIE['auxp'];
+         $pred=$_COOKIE['auxp'];
+
+ }
+ }else {
+     $ppredio="";
+     $predio="";
+     $pred="";
+ }
+ 
+
 ?>
     <div style="margin-left:33%;padding:70px 0">
         <div class="logo" style="margin-left: 5cm;">Buscar Bem</div>
 
         <div class="login-form-1">
-            <form id="login-form" class="text-left" action="T11teste.php" method="get">
+            <form id="login-form" class="text-left" action="T11p.php" method="get">
                 <div style="width:500px" class="main-login-form">
+
                     <div class="login-group">
                         <div class="form-group">
                             <label for="nome" class="sr-only">Nome</label>
                             <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome">
                         </div>
                         <div class="form-group">
-                        <label for="sel1" class="sr-only">Prédio</label>
-                        <select class="form-control" id="selpredio" name="selpredio" title='Prédio' onchange="buscarDepartamentos()">
+                            <label for="data" class="sr-only">Data</label>
+                            <input type="date" class="form-control" id="data" name="data">
+                        </div>
+        
+                        <div class="form-group">
+                             <label for="sel1" class="sr-only">Prédio</label>
+                            <select class="form-control" id="selpredio" name="selpredio" title='Prédio'>
                                       <option value="">Prédio</option>
                                     </select>
-                    </div>
-                    <div class="form-group">
-                             <label for="sel1" class="sr-only">Departamento</label>
-                             <select class="form-control" id="seldep" name="seldep" onchange="buscarSala()">
-                                <option value="" selected disabled hidden>Departamento</option>
-
-                                </select>
-                    </div>
-                    <div class="form-group">
-                            <label for="selsala" class="sr-only">Sala </label>
-                            <select class="form-control" id="selsala" name="selsala" title='Sala'> 
-                                  <option value="" selected disabled hidden>Sala</option>
-
-                                </select>
-                        </div>
-                    </div>                    
+                         </div>                    
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
+                </div>
                 </div>
                 <div class="etc-login-form">
                     <a href="T06.php">Incluir Bem</a>
@@ -105,23 +119,21 @@ if (isset($_COOKIE['aux'])){
         </div>
     </div>
 
-    <div id="main" class="container-fluid">
-	</div>
     <div class='table-responsive col-md-12'>
         <table class='table table-striped'>
             <thead>
                 <tr>
                 <?php
-                    echo "<th><a href='T11teste.php?ordem=numero{$pnome}'>Código</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=descricao{$pnome}'>Descrição</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=datacompra{$pnome}'>Data da Compra</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=prazogarantia{$pnome}'>Garantia</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=nrnotafiscal{$pnome}'>Nota</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=fornecedor{$pnome}'>Fornecedor</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=valor{$pnome}'>Valor</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=situacao{$pnome}'>Situação</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=codcategoria{$pnome}'>Categoria</a></th>";
-                    echo "<th><a href='T11teste.php?ordem=numsala{$pnome}'>Sala</a></th>";
+                    echo "<th><a href='T11p.php?ordem=numero{$pnome}{$dataX}{$ppredio}'>Código</a></th>";
+                    echo "<th><a href='T11p.php?ordem=descricao{$pnome}{$dataX}{$ppredio}'>Descrição</a></th>";
+                    echo "<th><a href='T11p.php?ordem=datacompra{$pnome}{$dataX}{$ppredio}'>Data da Compra</a></th>";
+                    echo "<th><a href='T11p.php?ordem=prazogarantia{$pnome}{$dataX}{$ppredio}'>Garantia</a></th>";
+                    echo "<th><a href='T11p.php?ordem=nrnotafiscal{$pnome}{$dataX}{$ppredio}'>Nota</a></th>";
+                    echo "<th><a href='T11p.php?ordem=fornecedor{$pnome}{$dataX}{$ppredio}'>Fornecedor</a></th>";
+                    echo "<th><a href='T11p.php?ordem=valor{$pnome}{$dataX}{$ppredio}'>Valor</a></th>";
+                    echo "<th><a href='T11p.php?ordem=situacao{$pnome}{$dataX}{$ppredio}'>Situação</a></th>";
+                    echo "<th><a href='T11p.php?ordem=codcategoria{$pnome}{$dataX}{$ppredio}'>Categoria</a></th>";
+                    echo "<th><a href='T11p.php?ordem=numsala{$pnome}{$dataX}{$ppredio}'>Sala</a></th>";
                     echo "<th><a href='#'>Depreciaçao</a></th>";
                     echo "<th class='actions text-center'>Ação</th>";
                     ?>
@@ -136,17 +148,23 @@ if (isset($_COOKIE['aux'])){
 if(!empty($_GET['nome'])){
 
     $nome = "%" . $_GET['nome'] . "%";
-    $sql= "SELECT * FROM bempatrimonial WHERE upper(descricao) LIKE upper(:nome)" . $ordem;
-    $resultado = $con->prepare($sql);
-    $resultado->bindParam(':nome', $nome, PDO::PARAM_STR);
+   $sqlX= "SELECT bp.numero, bp.descricao, bp.datacompra, bp.prazogarantia, bp.nrnotafiscal, bp.fornecedor, bp.valor, bp.situacao, bp.codcategoria, bp.numsala from sala, bempatrimonial bp where bp.numsala=sala.numero and bp.numero in
+   ((select b.numero from bempatrimonial b where b.situacao = 'I' and b.datacompra <= '{$data10}}')
+   union all
+   (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}')) and upper(bp.descricao) like upper('{$nome}')". $predio . $ordem;
+ 
+    $resultado = $con->prepare($sqlX);
+
     $resultado->execute();
-    #$total = $resultado->rowCount();
 
 }else{
-            $sql= "SELECT * FROM bempatrimonial " . $ordem;
-            $resultado = $con->prepare($sql);
+            $sqlX="SELECT bp.numero, bp.descricao, bp.datacompra, bp.prazogarantia, bp.nrnotafiscal, bp.fornecedor, bp.valor, bp.situacao, bp.codcategoria, bp.numsala from sala, bempatrimonial bp where bp.numsala=sala.numero and bp.numero in
+            ((select b.numero from bempatrimonial b where b.situacao = 'I' and b.datacompra <= '{$data10}}')
+            union all
+            (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}'))". $predio . $ordem;
+
+            $resultado = $con->prepare($sqlX);
             $resultado->execute();
-            #$total = $resultado->rowCount();
             }
         
 
@@ -167,16 +185,13 @@ if(!empty($_GET['nome'])){
             $resultado2 = $con->prepare($sql2);
             $resultado2->execute();
             $row2 = $resultado2->fetchObject();
-                echo "<td><b>{$row2->depre} a/m</b></td>";
-            
-            echo "<td>
-     <a href='baixa.php?id=$id'>
-            <input type='button' name='insert' value='Apagar' />
-            </a>";
-            echo "<a href='alterabem.php?id=$id'>
-                   <input type='button' name='insert' value='Editar' />
-                   </a></td>";
+            echo "<td><b>{$row2->depre} a/m</b></td>";
+            echo "<td><input type='button' name='insert' onclick='confirma({$id})' value='Apagar' />";
+            echo "<a href='alterabem.php?id=$id'><input type='button' name='insert' value='Editar' /></a></td>";
             echo "</tr>";
+
+            echo "<br>";
+
                 }
             ?>
     </tbody>
@@ -184,7 +199,9 @@ if(!empty($_GET['nome'])){
     </div>
     <div class="etc-login-form">
         <a href="index.php">Voltar</a>        
-        <a href="T11teste.php" onClick="SetCookies('aux','','-1')">Listar novamente</a>
+        <a href="T11p.php" onClick="SetCookies('aux','','-1'); SetCookies('auxp','','-1');">Listar novamente   </a>
+        <?php  echo "<a href='pdf.php?data10={$data10}&mm={$mm}&ordem={$ordem}&predio={$pred}'>  Imprime PDF</a>"; ?>
+        
     </div>
 
 </body>
@@ -239,6 +256,16 @@ function buscarDepartamentos(){
 			});
 			
 		}
+
+function confirma(id)
+{
+var r = confirm("Deseja continuar com a baixa desse item?");
+if (r == true) {
+    $(window).attr('location','baixa.php?id=' + id )
+} else {
+
+}
+}
  //buscarDepartamentos();
 </script>
 </html>

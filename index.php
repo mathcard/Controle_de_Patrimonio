@@ -3,6 +3,10 @@ require "modelo.php";
 require "connect.php";
 
 ###################
+if($tipo == 'F'){
+	header ("location: T10.php");
+	}
+
 if (isset($_GET['ordem'])) {
     $ordem=" ORDER BY " . $_GET['ordem'];
 }else {
