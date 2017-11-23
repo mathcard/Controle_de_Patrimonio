@@ -29,9 +29,7 @@ if (!isset($_GET['id'])) {
                     echo "<th><b>Nota Fiscal</b></th>";
                     echo "<th><b>Fornecedor</b></th>";
                     echo "<th><b>Valor</b></th>";
-                    echo "<th><b>Situação</b></th>";
                     echo "<th><b>Categoria</b></th>";
-                    echo "<th><b>Sala</b></th>";
                     ?>
                 </tr>
             </thead>
@@ -46,20 +44,14 @@ if (!isset($_GET['id'])) {
         echo "<td><b>{$row->nrnotafiscal}</b></td>";
         echo "<td><b>{$row->fornecedor}</b></td>";
         echo "<td><b>{$row->valor}</b></td>";
-        echo "<td><b>{$row->situacao}</b></td>";
         echo "<td><b>{$row->codcategoria}</b></td>";
-        echo "<td><b>{$row->numsala}</b></td>";
-
 ?>
     </tbody>
     </table>
     </div>
 <script>
 window.onload = function(){
-
-    document.getElementById('selsalaDiv').style.display = 'none';
     document.getElementById('selcatDiv').style.display = 'none';
-    document.getElementById('insitDiv').style.display = 'none';
     document.getElementById('infornDiv').style.display = 'none';
     document.getElementById('invalorDiv').style.display = 'none';
     document.getElementById('innfeDiv').style.display = 'none';
@@ -137,18 +129,6 @@ function esconde(field,check) {
                             </div>
                         </div>
                         <div class="form-group">
-                    <input type="checkbox" id="insitChk" name="insitChk" onclick="esconde('insitDiv', 'insitChk');"/>
-						<label for="insitChk">Situação</label>
-					</div>
-                        <div class="form-group" name="insitDiv" id="insitDiv">
-                            <label for="in_sit" class="sr-only">Situação</label>
-                            <select class="form-control" name="in_sit" id="in_sit" title='Situação'>  
-                                    <option value=''>Situação</option> 
-                                    <option value='B'>Baixado</option>
-                                    <option value='I'>Incorporado</option>
-                                    </select>
-                        </div>
-                        <div class="form-group">
                     <input type="checkbox" id="selcatChk" name="selcatChk" onclick="esconde('selcatDiv', 'selcatChk');"/>
 						<label for="selcatChk">Categoria</label>
 					</div>
@@ -157,18 +137,7 @@ function esconde(field,check) {
                         	<select class="form-control" id="selcat" name="selcat" title='Categoria'>
                                       <option>Categoria</option>
                                     </select>
-                    </div>
-                    <div class="form-group">
-                    <input type="checkbox" id="selsalaChk" name="selsalaChk" onclick="esconde('selsalaDiv', 'selsalaChk');"/>
-						<label for="selsalaChk">Sala</label>
-					</div>
-			 <div class="form-group" id="selsalaDiv" name="selsalaDiv">
-                            <label for="selsala" class="sr-only">Sala </label>
-                            <select class="form-control" id="selsala" name="selsala" title='Sala' > 
-                                  <option>Sala</option>
-
-                                </select>
-                        </div>
+                    </div>                    
                         <?php echo "<input type='hidden' id='numero' name='numero' value='{$numero}'/>"; ?>
 </div>
 
@@ -198,40 +167,7 @@ function esconde(field,check) {
                         });
 
                 }
-        buscarCategoria();
-
-        function buscarSala(){
-                        var url = "buscarSalaInclusao.php";
-                        $.get(url, mostrarSalaIn, 'json');
-                }
-
-                function mostrarSalaIn(dados){
-                        $("#selsala").empty();
-                        $("#selsala").append(new Option("Sala", "") );
-                        $.each(dados, function(indice, linha){
-                                $("#selsala").append(new Option(linha.nome, linha.valor) );
-                        });
-
-                }
-	buscarSala();
-
-/*
-    function preenche($row){
-    document.getElementById('in_desc').value = $row->descricao;
-    document.getElementById('in_dataa').value = $row->datacompra;
-    document.getElementById('in_prazo').value = $row->prazogarantia;
-    document.getElementById('in_nfe').value = $row->nrnotafiscal;
-    document.getElementById('in_forn').value = $row->fornecedor;
-    document.getElementById('in_valor').value = $row->valor;
-    document.getElementById('in_sit').value = $row->situacao;
-    document.getElementById('selcat').value = $row->codcategoria;
-    document.getElementById('selsala').value = $row->numsala;
-
-}
-*/
-
-
-
+        buscarCategoria();    
 </script>
 <?php } ?>
 </html>
