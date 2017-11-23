@@ -52,7 +52,7 @@ if (!empty($_POST['sl_desc'])) {
 }
 
 if (!empty($_POST['selpredio'])) {
-	if($_POST['sl_predio'] >= 0){
+	if($_POST['selpredio'] >= 0){
 		$pred="codpredio=" . $_POST['selpredio'];
 		$sql = "UPDATE sala SET " .$pred . " WHERE numero = " . $numero; 
 		$resultado = $con->prepare($sql);
