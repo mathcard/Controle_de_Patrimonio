@@ -121,10 +121,7 @@ if(!empty($_GET['nome'])){
                 echo "<td><b>{$row->descricao}</b></td>";
                 echo "<td><b>{$row->codpredio}</b></td>";
                 echo "<td><b>{$row->sigladpto}</b></td>";             
-                echo "<td>
-         <a href='excluirSala.php?id=$id'>
-                <input type='button' name='insert' value='Apagar' />
-                </a>";
+                echo "<td><input type='button' name='insert' onclick='confirma({$id})' value='Apagar' />";
                 echo "<a href='alterasala.php?id=$id'>
                        <input type='button' name='insert' value='Editar' />
                        </a></td>";
@@ -149,5 +146,14 @@ function SetCookies(c_name,value,expiredays)
     ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
 }
 
+function confirma(id)
+{
+var r = confirm("Deseja confirmar a exclusão desse item?");
+if (r == true) {
+    $(window).attr('location','excluirSala.php?id=' + id )
+} else {
+
+}
+}
 </script>
 </html>

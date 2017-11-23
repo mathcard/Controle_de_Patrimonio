@@ -86,7 +86,6 @@ if (isset($_COOKIE['aux'])){
                     echo "<th><a href='T01.php?ordem=nome{$pnome}'>Nome</a></th>";
                     echo "<th><a href='T01.php?ordem=descricao{$pnome}'>Descrição</a></th>";
                     echo "<th><a href='T01.php?ordem=vidautil{$pnome}'>Vida Útil</a></th>";
-
                     echo "<th class='actions text-center'>Ação</th>";
                     ?>
                 </tr>
@@ -119,11 +118,8 @@ if(!empty($_GET['nome'])){
                 echo "<td><b>{$row->nome}</b></td>";
                 echo "<td><b>{$row->descricao}</b></td>";
                 echo "<td><b>{$row->vidautil}</b></td>";            
-                echo "<td>
-         <a href='excluirCategoria.php?id=$id'>
-                <input type='button' name='insert' value='Apagar' />
-                </a>";
-                echo "<a href='alterabem.php?id=$id'>
+                echo "<td><input type='button' name='insert' onclick='confirma({$id})' value='Apagar' />";
+                echo "<a href='alteracategoria.php?id=$id'>
                        <input type='button' name='insert' value='Editar' />
                        </a></td>";
                 echo "</tr>";
@@ -147,5 +143,14 @@ function SetCookies(c_name,value,expiredays)
     ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())
 }
 
+function confirma(id)
+{
+var r = confirm("Deseja confirmar a exclusão desse item?");
+if (r == true) {
+    $(window).attr('location','excluirCategoria.php?id=' + id )
+} else {
+
+}
+}
 </script>
 </html>

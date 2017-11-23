@@ -83,6 +83,6 @@ if(empty($_POST['estado'])){
 	$resultado->bindParam(8, $_POST['estado']);
 	$resultado->execute();
         echo "Predio incluido com sucesso!!!";
-	header ("refresh:5; url=T02f.php");
+	header ("refresh:5; url=T02.php");
 	}
 ?>

@@ -97,13 +97,13 @@ if (isset($_COOKIE['aux'])){
 if(!empty($_GET['nome'])){
     
         $nome = "%" . $_GET['nome'] . "%";
-        $sql= "SELECT departamento.sigla, departamento.nome, predio.nome as predio from departamento, predio, sala where sala.codpredio=predio.codigo and sala.sigladpto=departamento.sigla and upper(departamento.nome) LIKE upper(:nome)" . $ordem;
+        $sql= "SELECT departamento.sigla, departamento.nome, predio.nome from departamento full join sala on sala.sigladpto=departamento.sigla left join predio on sala.codpredio=predio.codigo where upper(departamento.nome) LIKE upper(:nome)" . $ordem;
         $resultado = $con->prepare($sql);
         $resultado->bindParam(':nome', $nome, PDO::PARAM_STR);
         $resultado->execute();
     
     }else{
-                $sql= "SELECT departamento.sigla, departamento.nome, predio.nome as predio from departamento, predio, sala where sala.codpredio=predio.codigo and sala.sigladpto=departamento.sigla" . $ordem;
+                $sql= "SELECT departamento.sigla, departamento.nome, predio.nome as predio from departamento full join sala on sala.sigladpto=departamento.sigla left join predio on sala.codpredio=predio.codigo" . $ordem;
                 $resultado = $con->prepare($sql);
                 $resultado->execute();
                 }
@@ -115,15 +115,6 @@ if(!empty($_GET['nome'])){
                 echo "<td><b>{$row->sigla}</b></td>";
                 echo "<td><b>{$row->nome}</b></td>";
                 echo "<td><b>{$row->predio}</b></td>";
-                /*
-                $sql2="select predio.nome as predio from predio, sala, departamento where sala.codpredio=predio.codigo and sala.sigladpto=departamento.sigla and departamento.sigla='" . $id.  "'";
-                $resultado2 = $con->prepare($sql2);
-                $resultado2->execute();
-                echo "<td>";
-                while ($row2 = $resultado2->fetchObject()) {
-                    echo "<b>{$row2->predio}</b><br>";
-                }
-                */
                 echo "</td>"; 
                 echo "<td></td>"; 
 

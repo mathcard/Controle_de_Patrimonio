@@ -175,7 +175,7 @@ function esconde(field,check) {
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>
                 <div class="etc-login-form">
-                    <a href="index.php">Voltar</a>
+                    <a href="T11.php">Voltar</a>
                 </div>
             </form>
         </div>
