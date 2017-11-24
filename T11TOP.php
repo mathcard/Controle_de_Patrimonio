@@ -25,15 +25,23 @@ if (isset($_GET['ordem'])) {
 }else {
     $ordem="";
 }
-    if (!empty($_GET['data'])){
-    $data10=$_GET['data'];
-    $mm=' < ';
+$sql= "SELECT date FROM current_date";
+$resultado = $con->prepare($sql);
+$resultado->execute();
+$row = $resultado->fetchObject();
+$dataatual=$row->date;
+
+if (!empty($_GET['data'])){
+
+    if ($_GET['data'] != $dataatual){
+        $data10=$_GET['data'];
+        $mm=' < ';
+    }else{
+        $mm= ' > ';
+        $data10=$_GET['data'];
+    }
 
 }else {
-    $sql= "SELECT date FROM current_date";
-    $resultado = $con->prepare($sql);
-    $resultado->execute();
-    $row = $resultado->fetchObject();
     $data10=$row->date;
     $mm=' > ';
 
@@ -84,12 +92,64 @@ if (isset($_GET['selpredio'])) {
  }
  
 
+
+ if (isset($_GET['seldep'])) {
+    setcookie('auxd',$_GET['seldep'], time() + 60);
+ }else{
+ $pdepartamento="";
+ $departamento="";
+ $dep="";
+ }
+ 
+ if (isset($_COOKIE['auxd'])){
+     if (empty($_COOKIE['auxd'])){
+         $pdepartamento="";
+         $departamento="";
+         $dep="";
+     }else {
+         $pdepartamento="&seldep=" . $_COOKIE['auxd'];
+         $departamento=" and sala.sigladpto='" . $_COOKIE['auxd'] . "'";
+         $dep=$_COOKIE['auxd'];
+
+ }
+ }else {
+     $pdepartamento="";
+     $departamento="";
+     $dep="";
+ }
+
+
+ if (isset($_GET['selsala'])) {
+    setcookie('auxs',$_GET['selsala'], time() + 60);
+ }else{
+ $psala="";
+ $sala="";
+ $sal="";
+ }
+ 
+ if (isset($_COOKIE['auxs'])){
+     if (empty($_COOKIE['auxs'])){
+         $psala="";
+         $sala="";
+         $sal="";
+     }else {
+         $psala="&selsala=" . $_COOKIE['auxs'];
+         $sala=" and sala.numero=" . $_COOKIE['auxs'];
+         $sal=$_COOKIE['auxs'];
+
+ }
+ }else {
+     $psala="";
+     $sala="";
+     $sal="";
+ }
+
 ?>
     <div style="margin-left:33%;padding:70px 0">
         <div class="logo" style="margin-left: 5cm;">Buscar Bem</div>
 
         <div class="login-form-1">
-            <form id="login-form" class="text-left" action="T11p.php" method="get">
+            <form id="login-form" class="text-left" action="T11TOP.php" method="get">
                 <div style="width:500px" class="main-login-form">
 
                     <div class="login-group">
@@ -103,11 +163,24 @@ if (isset($_GET['selpredio'])) {
                         </div>
         
                         <div class="form-group">
-                             <label for="sel1" class="sr-only">Prédio</label>
-                            <select class="form-control" id="selpredio" name="selpredio" title='Prédio'>
+                             <label for="selpredio" class="sr-only">Prédio</label>
+                            <select class="form-control" id="selpredio" name="selpredio" title='Prédio' onchange="buscarDepartamentos()">
                                       <option value="">Prédio</option>
                                     </select>
-                         </div>                    
+                         </div>    
+
+                        <div class="form-group">
+                             <label for="seldep" class="sr-only">Departamento</label>
+                            <select class="form-control" id="seldep" name="seldep" title='Departamento' onchange="buscarSala()">
+                                      <option value="">Departamento</option>
+                                    </select>
+                         </div>
+                         <div class="form-group">
+                             <label for="selsala" class="sr-only">Salas</label>
+                            <select class="form-control" id="selsala" name="selsala" title='Salas'>
+                                      <option value="">Salas</option>
+                                    </select>
+                         </div>                        
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>
                 </div>
@@ -127,16 +200,16 @@ if (isset($_GET['selpredio'])) {
             <thead>
                 <tr>
                 <?php
-                    echo "<th><a href='T11p.php?ordem=numero{$pnome}{$dataX}{$ppredio}'>Código</a></th>";
-                    echo "<th><a href='T11p.php?ordem=descricao{$pnome}{$dataX}{$ppredio}'>Descrição</a></th>";
-                    echo "<th><a href='T11p.php?ordem=datacompra{$pnome}{$dataX}{$ppredio}'>Data da Compra</a></th>";
-                    echo "<th><a href='T11p.php?ordem=prazogarantia{$pnome}{$dataX}{$ppredio}'>Garantia</a></th>";
-                    echo "<th><a href='T11p.php?ordem=nrnotafiscal{$pnome}{$dataX}{$ppredio}'>Nota</a></th>";
-                    echo "<th><a href='T11p.php?ordem=fornecedor{$pnome}{$dataX}{$ppredio}'>Fornecedor</a></th>";
-                    echo "<th><a href='T11p.php?ordem=valor{$pnome}{$dataX}{$ppredio}'>Valor</a></th>";
-                    echo "<th><a href='T11p.php?ordem=situacao{$pnome}{$dataX}{$ppredio}'>Situação</a></th>";
-                    echo "<th><a href='T11p.php?ordem=codcategoria{$pnome}{$dataX}{$ppredio}'>Categoria</a></th>";
-                    echo "<th><a href='T11p.php?ordem=numsala{$pnome}{$dataX}{$ppredio}'>Sala</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=numero{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Código</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=descricao{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Descrição</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=datacompra{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Data da Compra</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=prazogarantia{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Garantia</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=nrnotafiscal{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Nota</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=fornecedor{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Fornecedor</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=valor{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Valor</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=situacao{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Situação</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=codcategoria{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Categoria</a></th>";
+                    echo "<th><a href='T11TOP.php?ordem=numsala{$pnome}{$dataX}{$ppredio}{$pdepartamento}'>Sala</a></th>";
                     if ($tipo != "F"){
                     echo "<th><a href='#'>Depreciaçao</a></th>";
                     echo "<th class='actions text-center'>Ação</th>";
@@ -156,7 +229,7 @@ if(!empty($_GET['nome'])){
    $sqlX= "SELECT bp.numero, bp.descricao, bp.datacompra, bp.prazogarantia, bp.nrnotafiscal, bp.fornecedor, bp.valor, bp.situacao, bp.codcategoria, bp.numsala from sala, bempatrimonial bp where bp.numsala=sala.numero and bp.numero in
    ((select b.numero from bempatrimonial b where b.situacao = 'I' and b.datacompra <= '{$data10}}')
    union all
-   (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}')) and upper(bp.descricao) like upper('{$nome}')". $predio . $ordem;
+   (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}')) and upper(bp.descricao) like upper('{$nome}')". $predio . $departamento . $sala . $ordem;
  
     $resultado = $con->prepare($sqlX);
 
@@ -166,7 +239,7 @@ if(!empty($_GET['nome'])){
             $sqlX="SELECT bp.numero, bp.descricao, bp.datacompra, bp.prazogarantia, bp.nrnotafiscal, bp.fornecedor, bp.valor, bp.situacao, bp.codcategoria, bp.numsala from sala, bempatrimonial bp where bp.numsala=sala.numero and bp.numero in
             ((select b.numero from bempatrimonial b where b.situacao = 'I' and b.datacompra <= '{$data10}}')
             union all
-            (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}'))". $predio . $ordem;
+            (select ba.numero from baixabempatrimonial ba where ba.data {$mm} '{$data10}'))". $predio . $departamento . $sala . $ordem;
 
             $resultado = $con->prepare($sqlX);
             $resultado->execute();
@@ -197,15 +270,16 @@ if(!empty($_GET['nome'])){
             }
             echo "</tr>";
             echo "<br>";
-
-                }
+        }
+            echo "<br>";
             ?>
+
     </tbody>
     </table>
     </div>
     <div class="etc-login-form">
         <a href="index.php">Voltar</a>        
-        <a href="T11p.php" onClick="SetCookies('aux','','-1'); SetCookies('auxp','','-1');">Listar novamente   </a>
+        <a href="T11TOP.php" onClick="SetCookies('aux','','-1'); SetCookies('auxp','','-1'); SetCookies('auxd','','-1'); SetCookies('auxs','','-1');">Listar novamente   </a>
         <?php  echo "<a href='pdf.php?data10={$data10}&mm={$mm}&ordem={$ordem}&predio={$pred}'>  Imprime PDF</a>"; ?>
         
     </div>
@@ -233,12 +307,16 @@ function buscarPredio(){
 			
 		}
 buscarPredio();
-/*
-function buscarSala(){
-                        var url = "buscatudo.php?predio=" +$( "#selpredio" ).val()+"&departamento="+$( "#seldep" ).val();
-                        $.get(url, mostrarSala, 'json');
-                }
 
+function buscarSala(a){
+    if (a == 1){
+        var url = "buscarsalas.php";
+        }else {
+                var url = "buscatudo.php?predio=" +$( "#selpredio" ).val()+"&departamento="+$( "#seldep" ).val();
+
+                }
+                $.get(url, mostrarSala, 'json')
+}
                 function mostrarSala(dados){
                         $("#selsala").empty();
                         $("#selsala").append(new Option("Sala", "") );
@@ -247,10 +325,15 @@ function buscarSala(){
                         });
 
                 }
-//buscarSala();
+buscarSala(1);
 
-function buscarDepartamentos(){
-			var url = "buscatudo.php?predio="+$( "#selpredio" ).val();
+function buscarDepartamentos(a){
+if (a == 1){
+            
+            var url = "buscardepartamentos.php";
+}else {
+             var url = "buscatudo.php?predio="+$( "#selpredio" ).val();
+    }
 			$.get(url, mostrarDepartamentos, 'json');
 		}
 		
@@ -262,8 +345,8 @@ function buscarDepartamentos(){
 			});
 			
 		}
- //buscarDepartamentos();
-*/
+buscarDepartamentos(1);
+
 function confirma(id)
 {
 var r = confirm("Deseja continuar com a baixa desse item?");
