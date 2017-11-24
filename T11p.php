@@ -111,9 +111,12 @@ if (isset($_GET['selpredio'])) {
                     <button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
                 </div>
                 </div>
-                <div class="etc-login-form">
-                    <a href="T06.php">Incluir Bem</a>
-                </div>
+                <div class="etc-login-form" style="width: 500px">
+                <a href="T06.php">Incluir Bem /</a>
+                <a href="T11p.php"> Prédio / </a>
+                <a href="T11d.php"> Departamento /</a>
+                <a href="T11s.php"> Sala</a>
+            </div>
                 
             </form>
         </div>
@@ -227,7 +230,7 @@ function buscarPredio(){
 			
 		}
 buscarPredio();
-
+/*
 function buscarSala(){
                         var url = "buscatudo.php?predio=" +$( "#selpredio" ).val()+"&departamento="+$( "#seldep" ).val();
                         $.get(url, mostrarSala, 'json');
@@ -256,7 +259,8 @@ function buscarDepartamentos(){
 			});
 			
 		}
-
+ //buscarDepartamentos();
+*/
 function confirma(id)
 {
 var r = confirm("Deseja continuar com a baixa desse item?");
@@ -266,6 +270,6 @@ if (r == true) {
 
 }
 }
- //buscarDepartamentos();
+
 </script>
 </html>
