@@ -92,7 +92,7 @@ if(!$f){
 	if($aux != true){
 		header ("refresh:5; url=T03.php");
 	}else{
-		if (($tipo = 'P') && ($e='D')){
+		if(($tipo=='P') && ($e=='D')){
 			$sqlA = $con->prepare("update usuario set tipo = ? where tipo = ? and sigla = ?");
 			$sqlA->execute(array("F","D",$f));
 		}

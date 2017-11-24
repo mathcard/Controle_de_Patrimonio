@@ -40,9 +40,9 @@
     ?>	
 
       <a class="dropdown-item" href="T07.php">Criar MBP</a>
-      <a class="dropdown-item" href="index.php">MBPs Pendentes</a>
       <a class="dropdown-item" href="T11.php">Inventário</a>
       <a class="dropdown-item" href="logout.php">Logout</a>
+      <a class="dropdown-item" href="index.php">Home</a>
       
 <?php 
   break;
@@ -54,9 +54,8 @@
       <a class="dropdown-item" href="T03.php">Usuários</a>
       <a class="dropdown-item" href="T07.php">Criar MBP</a>
       <a class="dropdown-item" href="T11.php">Inventário</a>
-      <a class="dropdown-item" href="index.php">MBPs Pendentes</a>
+      <a class="dropdown-item" href="index.php">Home</a>
       <a class="dropdown-item" href="logout.php">Logout</a>
-    
 <?php  
   break;
       };
@@ -71,8 +70,8 @@
         <a class="dropdown-item" href="T04.php">Departamentos</a>
         <a class="dropdown-item" href="T05.php">Salas</a>
         <a class="dropdown-item" href="T07.php">Criar MBP</a>
-        <a class="dropdown-item" href="index.php">MBPs Pendentes</a>
         <a class="dropdown-item" href="T11.php">Inventário</a>
+        <a class="dropdown-item" href="index.php">Home</a>
         <a class="dropdown-item" href="logout.php">Logout</a>
 
 <?php  
