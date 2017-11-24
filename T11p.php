@@ -137,8 +137,10 @@ if (isset($_GET['selpredio'])) {
                     echo "<th><a href='T11p.php?ordem=situacao{$pnome}{$dataX}{$ppredio}'>Situação</a></th>";
                     echo "<th><a href='T11p.php?ordem=codcategoria{$pnome}{$dataX}{$ppredio}'>Categoria</a></th>";
                     echo "<th><a href='T11p.php?ordem=numsala{$pnome}{$dataX}{$ppredio}'>Sala</a></th>";
+                    if ($tipo != "F"){
                     echo "<th><a href='#'>Depreciaçao</a></th>";
                     echo "<th class='actions text-center'>Ação</th>";
+                    }
                     ?>
                 </tr>
             </thead>
@@ -184,6 +186,7 @@ if(!empty($_GET['nome'])){
             echo "<td><b>{$row->situacao}</b></td>";
             echo "<td><b>{$row->codcategoria}</b></td>";
             echo "<td><b>{$row->numsala}</b></td>";
+            if ($tipo != "F"){
             $sql2="select round(valor/vidautil, 2) as depre from bempatrimonial inner join categoria on codcategoria=codigo and numero=" . $row->numero;
             $resultado2 = $con->prepare($sql2);
             $resultado2->execute();
@@ -191,8 +194,8 @@ if(!empty($_GET['nome'])){
             echo "<td><b>{$row2->depre} a/m</b></td>";
             echo "<td><input type='button' name='insert' onclick='confirma({$id})' value='Apagar' />";
             echo "<a href='alterabem.php?id=$id'><input type='button' name='insert' value='Editar' /></a></td>";
+            }
             echo "</tr>";
-
             echo "<br>";
 
                 }
