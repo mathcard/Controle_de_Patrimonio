@@ -18,7 +18,7 @@
 <?php 
 require "modelo.php";
 require "connect.php"; 
-
+require "onlyP.php";
 $id=$_SESSION['login'];
 $sql2 = $con->query("select * from usuario where login = '$id'");
 $row = $sql2->fetch(PDO::FETCH_OBJ);

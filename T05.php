@@ -18,15 +18,13 @@
 <?php 
 require "modelo.php";
 require "connect.php"; 
+require "onlyP.php";
 
 $id=$_SESSION['login'];
 $sql2 = $con->query("select * from usuario where login = '$id'");
 $row = $sql2->fetch(PDO::FETCH_OBJ);
 $tipo = $row->tipo;
 
-if ($tipo != 'P') {
-    echo "Você nao tem permissão para visualizar esta pagina";
-}
 
 if (isset($_GET['ordem'])) {
     $ordem=" ORDER BY " . $_GET['ordem'];

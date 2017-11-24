@@ -3,7 +3,7 @@ require "modelo.php";
 require "connect.php"; 
 if (($tipo != 'D')&&($tipo != 'P')){
     echo "Você não tem permissão para realizar essa ação";
-    header ("refresh:5; url=T03.php");
+    header ("refresh:2; url=T10.php");
 }else{
 $id=$_SESSION['login'];
 $sql2 = $con->query("select * from usuario where login = '$id'");
