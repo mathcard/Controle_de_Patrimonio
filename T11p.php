@@ -196,7 +196,6 @@ if(!empty($_GET['nome'])){
             echo "<a href='alterabem.php?id=$id'><input type='button' name='insert' value='Editar' /></a></td>";
             }
             echo "</tr>";
-            echo "<br>";
 
                 }
             ?>
