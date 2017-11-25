@@ -198,8 +198,6 @@ if(!empty($_GET['nome'])){
             }
             echo "</tr>";
 
-            echo "<br>";
-
                 }
             ?>
     </tbody>
