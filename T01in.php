@@ -41,7 +41,7 @@ if(empty($vida)){
 	$resultado->bindParam(2, $descricao);
 	$resultado->bindParam(3, $vida);
 	$resultado->execute();
-	echo "Categoria incluida com sucesso.";
+	echo "<b>Categoria</b> incluida com sucesso.";
 	header ("refresh:5; url=T01.php");
 
 }

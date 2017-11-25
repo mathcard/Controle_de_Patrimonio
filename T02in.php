@@ -82,7 +82,7 @@ if(empty($_POST['estado'])){
 	$resultado->bindParam(7, $_POST['pr_city']);
 	$resultado->bindParam(8, $_POST['estado']);
 	$resultado->execute();
-        echo "Predio incluido com sucesso!!!";
+        echo "<b>Predio</b> incluido com sucesso!!!";
 	header ("refresh:5; url=T02.php");
 	}
 ?>

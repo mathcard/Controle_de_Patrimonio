@@ -89,7 +89,7 @@ if(empty($_POST['in_dataa'])){
 		$resultado->bindParam(7, $_POST['selcat']);
 		$resultado->bindParam(8, $_POST['selsala']);
 		$resultado->execute();
-		echo "Bem Patrimonial incluido com sucesso!!!";
+		echo "<b>Bem</b>  incluido com sucesso!!!";
 		header ("refresh:5; url=T06.php");
 	}	
 ?>

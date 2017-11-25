@@ -54,7 +54,7 @@ if(empty($_POST['selsalad'])){
 		$resultado->bindParam(3, $_POST['selsalao']);
 		$resultado->bindParam(4, $_POST['selsalad']);
 		$resultado->execute();
-		echo "Movimentação de Bem Patrimonial realizada com sucesso!";
+		echo "<b>Movimentação de Bem Patrimonial</b> realizada com sucesso!";
 		header ("refresh:5; url=T07.php");
 	}
 ?>

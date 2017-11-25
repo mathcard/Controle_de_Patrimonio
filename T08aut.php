@@ -2,11 +2,11 @@
 require "connect.php";
 require "verifica.php";
 require "modelo2.php";
+echo "<br><br>";
 	if($tipo == 'F'){
-				echo "Você não tem autoridade para realizar essa ação."
-                header ("location:index.php");
-        }
-
+		echo "Você não tem autoridade para realizar essa ação.";
+                header ("refresh:3; url:index.php");
+        }else{
 
 $LOGIN = $_SESSION['login']; #usado para buscar o usuario conectado
 $bem = $_GET['numero']; #numero da MBP
@@ -51,15 +51,10 @@ if($tipo=='P'){
 	}
 
 }
-
-
 ### Sql alterando a sala do BEM ###
 $sqlB =$con->prepare("update bempatrimonial set numsala = ? where numero = ?");
 $sqlB->execute(array($sala, $numbem));
-
-
-
-
-header ("location: T08.php");
-
+      echo "<b>Movimentação</b> autorizada com sucesso.";
+	header("refresh:3; url=index.php");
+}
 ?>

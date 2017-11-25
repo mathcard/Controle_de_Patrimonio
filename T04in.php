@@ -32,7 +32,7 @@ if(empty($nome)){
 		$resultado->bindParam(1, $sig);
 		$resultado->bindParam(2, $nome);
 		$resultado->execute();
-		echo "Departamento incluído com sucesso!!!";
+		echo "<b>Departamento</b> incluído com sucesso!!!";
 		header ("refresh:5; url=T04.php");
 	}
 

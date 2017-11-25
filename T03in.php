@@ -106,7 +106,7 @@ if(!$f){
     $resultado->bindParam(5, $e);
     $resultado->bindParam(6, $f);
     $resultado->execute();
-     echo "Usuario cadastrado com sucesso!";
+     echo "<b>Usuario</b> cadastrado com sucesso!";
      header ("refresh:5; url=T03.php");
 }
 ?>
