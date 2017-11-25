@@ -205,7 +205,7 @@ if(!empty($_GET['nome'])){
     <div class="etc-login-form">
         <a href="index.php">Voltar</a>        
         <a href="T11p.php" onClick="SetCookies('aux','','-1'); SetCookies('auxp','','-1');">Listar novamente   </a>
-        <?php  echo "<a href='pdf.php?data10={$data10}&mm={$mm}&ordem={$ordem}&predio={$pred}'>  Imprime PDF</a>"; ?>
+ <?php  echo "<a href='pdf.php?data10={$data10}&mm={$mm}&ordem={$ordem}&predio={$pred}&departamento={$dep}&sala={$sal}&nome={$pnome}'>  Imprime PDF</a>"; ?>
         
     </div>
 
