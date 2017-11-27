@@ -38,11 +38,10 @@
       
      case 'F':{ 
     ?>	
-
+      <a class="dropdown-item" href="index.php">Home</a>
       <a class="dropdown-item" href="T07.php">Criar MBP</a>
       <a class="dropdown-item" href="T11.php">Inventário</a>
       <a class="dropdown-item" href="logout.php">Logout</a>
-      <a class="dropdown-item" href="index.php">Home</a>
       
 <?php 
   break;
@@ -50,11 +49,11 @@
       
   case 'D':{
 ?>
-
+      <a class="dropdown-item" href="index.php">Home</a>
       <a class="dropdown-item" href="T03.php">Usuários</a>
       <a class="dropdown-item" href="T07.php">Criar MBP</a>
+      <a class="dropdown-item" href="T10.php">Listar MBPs</a>
       <a class="dropdown-item" href="T11.php">Inventário</a>
-      <a class="dropdown-item" href="index.php">Home</a>
       <a class="dropdown-item" href="logout.php">Logout</a>
 <?php  
   break;
@@ -63,7 +62,7 @@
   
   case 'P':{
 ?>
-
+        <a class="dropdown-item" href="index.php">Home</a>
         <a class="dropdown-item" href="T03.php">Usuários</a>
         <a class="dropdown-item" href="T01.php">Categorias</a>
         <a class="dropdown-item" href="T02.php">Prédios</a>
@@ -71,7 +70,7 @@
         <a class="dropdown-item" href="T05.php">Salas</a>
         <a class="dropdown-item" href="T07.php">Criar MBP</a>
         <a class="dropdown-item" href="T11.php">Inventário</a>
-        <a class="dropdown-item" href="index.php">Home</a>
+        <a class="dropdown-item" href="T10.php">Listar MBPs</a>
         <a class="dropdown-item" href="logout.php">Logout</a>
 
 <?php  
