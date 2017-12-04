@@ -15,15 +15,21 @@ $senha = $_POST['lg_password'];
 </div>
 
 <?php
-
 		header ("refresh:3;url=login.html");
 	}else{		
-	$sql = $con->query("select * from Usuario where login = '$user' and senha = md5('$senha')");
-	$login_check = $sql->rowCount();
+	$sql = "select * from usuario where login=? and senha=md5(?);";
+	$resultado = $con->prepare($sql);
+	$resultado->bindParam(1, $user);
+	$resultado->bindParam(2, $senha);
+	$resultado->execute();
+	$login_check = $resultado->rowCount();
+
 		if($login_check>0){
-			$row = $sql->fetch(PDO::FETCH_OBJ);
+			$row = $resultado->fetchObject();
 			$nome = $row->nome;
 			$tipo = $row->tipo;
+			echo $nome;
+			Echo " " . $tipo;
 			setcookie ("name", $nome);	
 			$_SESSION['type'] = $tipo;
 			$_SESSION['login']= $user;
@@ -35,11 +41,11 @@ $senha = $_POST['lg_password'];
         <div class="logo">Atenção</div>
 Usuario ou senha invalido!
 </div>
-<?php		
+<?php	
 	unset ($_SESSION['type']);
 	unset ($_SESSION['login']);
 	unset ($_SESSION['senha']);
-	header ("refresh:3;url=login.html");
+	header ("refresh:5;url=login.html");
 		}
 	} 
 
